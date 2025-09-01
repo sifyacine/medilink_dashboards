@@ -120,7 +120,7 @@ export const Chat: React.FC = () => {
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-    if (message.trim()) {
+    if (message.trim() && selectedContact) {
       const newMessage: Message = {
         id: Date.now().toString(),
         sender: 'You',
@@ -134,22 +134,28 @@ export const Chat: React.FC = () => {
       
       // Simulate a response after 2 seconds
       setTimeout(() => {
-        const responseMessage: Message = {
-          id: (Date.now() + 1).toString(),
-          sender: selectedContact.name,
-          content: 'Thanks for your message! I\'ll get back to you shortly.',
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          isOwn: false,
-        };
-        setMessages(prev => [...prev, responseMessage]);
+        if (selectedContact) {
+          const responseMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            sender: selectedContact.name,
+            content: 'Thanks for your message! I\'ll get back to you shortly.',
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            isOwn: false,
+          };
+          setMessages(prev => [...prev, responseMessage]);
+        }
       }, 2000);
     }
   };
 
   const handleContactSelect = (contact: Contact) => {
     setSelectedContact(contact);
-    // Clear messages when switching contacts
-    setMessages([]);
+    // Load initial messages for the selected contact
+    if (contact.id === '1') {
+      setMessages(initialMessages);
+    } else {
+      setMessages([]);
+    }
   };
   return (
     <div className="h-[calc(100vh-8rem)] bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 flex">

@@ -18,26 +18,54 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '../../contexts/ThemeContext';
+import { usePermissions } from '../../hooks/usePermissions';
 
-const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
-  { name: 'Clinics', href: '/clinics', icon: Building2 },
-  { name: 'Specialties', href: '/specialties', icon: Stethoscope },
-  { name: 'Medicines', href: '/medicines', icon: Pill },
-  { name: 'Nurses', href: '/nurses', icon: UserCog },
-  { name: 'Doctors', href: '/doctors', icon: UserCheck },
-  { name: 'Coupons', href: '/coupons', icon: Ticket },
-  { name: 'FAQs', href: '/faqs', icon: HelpCircle },
-  { name: 'Products', href: '/products', icon: Package },
-  { name: 'Chat', href: '/chat', icon: MessageCircle },
-];
+const getNavigationForRole = (role: string) => {
+  const baseNavigation = [
+    { name: 'Dashboard', href: '/dashboard', icon: BarChart3, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Nurse', 'Employee'] },
+  ];
+
+  const roleSpecificNavigation = [
+    // Super User Navigation
+    { name: 'User Management', href: '/users', icon: Users, roles: ['Super User'] },
+    { name: 'Clinics', href: '/clinics', icon: Building2, roles: ['Super User'] },
+    { name: 'Specialties', href: '/specialties', icon: Stethoscope, roles: ['Super User', 'Clinic Admin'] },
+    { name: 'Medicines', href: '/medicines', icon: Pill, roles: ['Super User', 'Clinic Admin', 'Nurse'] },
+    { name: 'Nurses', href: '/nurses', icon: UserCog, roles: ['Super User', 'Clinic Admin'] },
+    { name: 'Doctors', href: '/doctors', icon: UserCheck, roles: ['Super User', 'Clinic Admin'] },
+    { name: 'Products', href: '/products', icon: Package, roles: ['Super User', 'Clinic Admin'] },
+    { name: 'Coupons', href: '/coupons', icon: Ticket, roles: ['Super User', 'Clinic Admin'] },
+    { name: 'FAQs', href: '/faqs', icon: HelpCircle, roles: ['Super User', 'Clinic Admin'] },
+    
+    // Doctor Specific
+    { name: 'My Patients', href: '/my-patients', icon: Users, roles: ['Doctor'] },
+    { name: 'My Appointments', href: '/my-appointments', icon: Calendar, roles: ['Doctor'] },
+    { name: 'Prescriptions', href: '/prescriptions', icon: Pill, roles: ['Doctor'] },
+    
+    // Nurse Specific
+    { name: 'Patient Care', href: '/patient-care', icon: Users, roles: ['Nurse'] },
+    { name: 'Medications', href: '/medications', icon: Pill, roles: ['Nurse'] },
+    { name: 'Vital Signs', href: '/vital-signs', icon: Activity, roles: ['Nurse'] },
+    
+    // Common for multiple roles
+    { name: 'Appointments', href: '/appointments', icon: Calendar, roles: ['Clinic Admin', 'Employee'] },
+    { name: 'Chat', href: '/chat', icon: MessageCircle, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Nurse'] },
+  ];
+
+  return [...baseNavigation, ...roleSpecificNavigation].filter(item => 
+    item.roles.includes(role)
+  );
+};
 
 export const Sidebar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const { user, logout } = useAuth();
   const { isDarkMode } = useTheme();
+  const { canAccess } = usePermissions();
   const location = useLocation();
+
+  const navigation = getNavigationForRole(user?.role || 'Employee');
 
   const handleLogout = () => {
     logout();

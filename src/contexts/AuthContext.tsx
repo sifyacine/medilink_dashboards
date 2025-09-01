@@ -3,9 +3,11 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 export interface User {
   id: string;
   email: string;
-  role: 'Super Admin' | 'Nurse' | 'Doctor' | 'Pharmacy' | 'Clinic';
+  role: 'Super User' | 'Clinic Admin' | 'Doctor' | 'Nurse' | 'Employee';
   name: string;
   avatar?: string;
+  clinicId?: string;
+  permissions: string[];
 }
 
 interface AuthContextType {
@@ -47,9 +49,50 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     
     // Mock authentication - in real app, this would be an API call
     const mockUsers = [
-      { id: '1', email: 'admin@clinic.com', password: 'admin123', role: 'Super Admin' as const, name: 'Dr. Sarah Johnson' },
-      { id: '2', email: 'nurse@clinic.com', password: 'nurse123', role: 'Nurse' as const, name: 'Maria Rodriguez' },
-      { id: '3', email: 'doctor@clinic.com', password: 'doctor123', role: 'Doctor' as const, name: 'Dr. Michael Chen' },
+      { 
+        id: '1', 
+        email: 'superuser@clinic.com', 
+        password: 'super123', 
+        role: 'Super User' as const, 
+        name: 'Dr. Sarah Johnson',
+        permissions: ['all']
+      },
+      { 
+        id: '2', 
+        email: 'clinicadmin@clinic.com', 
+        password: 'clinic123', 
+        role: 'Clinic Admin' as const, 
+        name: 'John Smith',
+        clinicId: '1',
+        permissions: ['clinic_management', 'staff_management', 'patient_management']
+      },
+      { 
+        id: '3', 
+        email: 'doctor@clinic.com', 
+        password: 'doctor123', 
+        role: 'Doctor' as const, 
+        name: 'Dr. Michael Chen',
+        clinicId: '1',
+        permissions: ['patient_care', 'appointments', 'prescriptions']
+      },
+      { 
+        id: '4', 
+        email: 'nurse@clinic.com', 
+        password: 'nurse123', 
+        role: 'Nurse' as const, 
+        name: 'Maria Rodriguez',
+        clinicId: '1',
+        permissions: ['patient_care', 'appointments', 'medications']
+      },
+      { 
+        id: '5', 
+        email: 'employee@clinic.com', 
+        password: 'emp123', 
+        role: 'Employee' as const, 
+        name: 'Lisa Wilson',
+        clinicId: '1',
+        permissions: ['basic_access']
+      },
     ];
 
     const foundUser = mockUsers.find(u => u.email === email && u.password === password);
@@ -60,6 +103,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         email: foundUser.email,
         role: foundUser.role,
         name: foundUser.name,
+        clinicId: foundUser.clinicId,
+        permissions: foundUser.permissions,
       };
       setUser(user);
       localStorage.setItem('user', JSON.stringify(user));

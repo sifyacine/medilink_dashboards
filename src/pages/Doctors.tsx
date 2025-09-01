@@ -7,7 +7,7 @@ import { DoctorDashboard } from '../components/Dashboard/DoctorDashboard';
 import { NurseDashboard } from '../components/Dashboard/NurseDashboard';
 import { EmployeeDashboard } from '../components/Dashboard/EmployeeDashboard';
 
-export const Dashboard: React.FC = () => {
+export const Doctors: React.FC = () => {
   const { user } = useAuth();
 
   const renderDashboard = () => {

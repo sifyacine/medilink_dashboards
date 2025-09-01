@@ -90,7 +90,7 @@ export const Sidebar: React.FC = () => {
       <div className={`fixed left-0 top-0 h-full w-64 bg-slate-800 text-white transform transition-transform duration-200 ease-in-out z-40 ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       } lg:translate-x-0 ${isDarkMode ? 'dark' : ''}`}>
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full max-h-screen">
           {/* Logo */}
           <div className="px-6 py-4 border-b border-slate-700 dark:border-slate-600">
             <div className="flex items-center space-x-2">
@@ -102,7 +102,7 @@ export const Sidebar: React.FC = () => {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-4 py-6 space-y-2">
+          <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
             {navigation.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.href;

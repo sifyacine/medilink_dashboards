@@ -53,9 +53,9 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ isOpen, onClose }) =
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Settings" size="xl">
-      <div className="flex h-96">
+      <div className="flex min-h-96 max-h-[70vh]">
         {/* Sidebar */}
-        <div className="w-1/3 border-r border-gray-200 dark:border-gray-600 pr-4">
+        <div className="w-1/3 border-r border-gray-200 dark:border-gray-600 pr-4 overflow-y-auto">
           <nav className="space-y-2">
             {tabs.map((tab) => {
               const Icon = tab.icon;
@@ -78,7 +78,7 @@ export const UserSettings: React.FC<UserSettingsProps> = ({ isOpen, onClose }) =
         </div>
 
         {/* Content */}
-        <div className="flex-1 pl-6">
+        <div className="flex-1 pl-6 overflow-y-auto">
           {activeTab === 'profile' && (
             <div className="space-y-6">
               <div className="flex items-center space-x-4">

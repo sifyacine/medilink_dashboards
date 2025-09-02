@@ -62,17 +62,17 @@ export const DataTable: React.FC<DataTableProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
       {/* Search */}
-      <div className="p-4 border-b border-gray-200">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
         <div className="relative">
-          <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" />
           <input
             type="text"
             placeholder={searchPlaceholder}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
           />
         </div>
       </div>
@@ -80,12 +80,12 @@ export const DataTable: React.FC<DataTableProps> = ({
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-gray-50">
+          <thead className="bg-gray-50 dark:bg-gray-700">
             <tr>
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
+                  className={`px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider ${
                     column.sortable ? 'cursor-pointer hover:text-gray-700' : ''
                   }`}
                   onClick={() => column.sortable && handleSort(column.key)}
@@ -98,16 +98,16 @@ export const DataTable: React.FC<DataTableProps> = ({
                   )}
                 </th>
               ))}
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
             {paginatedData.map((row, index) => (
-              <tr key={row.id || index} className="hover:bg-gray-50">
+              <tr key={row.id || index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                 {columns.map((column) => (
-                  <td key={column.key} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td key={column.key} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                     {column.render ? column.render(row[column.key], row) : row[column.key]}
                   </td>
                 ))}
@@ -116,7 +116,7 @@ export const DataTable: React.FC<DataTableProps> = ({
                     {onView && (
                       <button
                         onClick={() => onView(row)}
-                        className="text-cyan-600 hover:text-cyan-900 p-1 rounded hover:bg-cyan-50"
+                        className="text-cyan-600 hover:text-cyan-900 dark:hover:text-cyan-400 p-1 rounded hover:bg-cyan-50 dark:hover:bg-cyan-900/20"
                       >
                         <Eye size={16} />
                       </button>
@@ -124,7 +124,7 @@ export const DataTable: React.FC<DataTableProps> = ({
                     {onEdit && (
                       <button
                         onClick={() => onEdit(row)}
-                        className="text-blue-600 hover:text-blue-900 p-1 rounded hover:bg-blue-50"
+                        className="text-blue-600 hover:text-blue-900 dark:hover:text-blue-400 p-1 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20"
                       >
                         <Edit size={16} />
                       </button>
@@ -132,7 +132,7 @@ export const DataTable: React.FC<DataTableProps> = ({
                     {onDelete && (
                       <button
                         onClick={() => onDelete(row)}
-                        className="text-red-600 hover:text-red-900 p-1 rounded hover:bg-red-50"
+                        className="text-red-600 hover:text-red-900 dark:hover:text-red-400 p-1 rounded hover:bg-red-50 dark:hover:bg-red-900/20"
                       >
                         <Trash2 size={16} />
                       </button>
@@ -147,25 +147,25 @@ export const DataTable: React.FC<DataTableProps> = ({
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="px-6 py-3 border-t border-gray-200 flex items-center justify-between">
-          <div className="text-sm text-gray-700">
+        <div className="px-6 py-3 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+          <div className="text-sm text-gray-700 dark:text-gray-300">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, sortedData.length)} of {sortedData.length} results
           </div>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setCurrentPage(current => Math.max(1, current - 1))}
               disabled={currentPage === 1}
-              className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed text-gray-600 dark:text-gray-400"
             >
               <ChevronLeft size={16} />
             </button>
-            <span className="text-sm text-gray-700">
+            <span className="text-sm text-gray-700 dark:text-gray-300">
               Page {currentPage} of {totalPages}
             </span>
             <button
               onClick={() => setCurrentPage(current => Math.min(totalPages, current + 1))}
               disabled={currentPage === totalPages}
-              className="p-2 rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed text-gray-600 dark:text-gray-400"
             >
               <ChevronRight size={16} />
             </button>

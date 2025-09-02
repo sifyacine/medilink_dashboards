@@ -122,25 +122,71 @@ export const Clinics: React.FC = () => {
         action={{ label: 'Add New Clinic', onClick: handleAddClinic }}
       />
 
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Clinics</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">{clinics.length}</p>
+            </div>
+            <CheckCircle size={24} className="text-blue-600" />
+          </div>
+        </div>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Active Clinics</p>
+              <p className="text-2xl font-bold text-green-600">
+                {clinics.filter(c => c.status === 'Active').length}
+              </p>
+            </div>
+            <CheckCircle size={24} className="text-green-600" />
+          </div>
+        </div>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Pending</p>
+              <p className="text-2xl font-bold text-yellow-600">
+                {clinics.filter(c => c.status === 'Pending').length}
+              </p>
+            </div>
+            <Clock size={24} className="text-yellow-600" />
+          </div>
+        </div>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Staff</p>
+              <p className="text-2xl font-bold text-purple-600">
+                {clinics.reduce((sum, c) => sum + c.doctors + c.nurses, 0)}
+              </p>
+            </div>
+            <CheckCircle size={24} className="text-purple-600" />
+          </div>
+        </div>
+      </div>
+
       {/* Pending Approvals */}
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Pending Clinic Applications</h3>
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Pending Clinic Applications</h3>
         <div className="space-y-4">
           {clinics.filter(c => c.status === 'Pending').map((clinic) => (
-            <div key={clinic.id} className="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
+            <div key={clinic.id} className="flex items-center justify-between p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
               <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-yellow-100 dark:bg-yellow-800 rounded-lg flex items-center justify-center">
                   <Clock size={20} className="text-yellow-600" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-gray-900">{clinic.name}</h4>
-                  <p className="text-sm text-gray-600">{clinic.location}</p>
+                  <h4 className="font-medium text-gray-900 dark:text-white">{clinic.name}</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{clinic.location}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => handleView(clinic)}
-                  className="text-cyan-600 hover:text-cyan-800 text-sm font-medium"
+                  className="text-cyan-600 hover:text-cyan-800 dark:hover:text-cyan-400 text-sm font-medium"
                 >
                   View Details
                 </button>

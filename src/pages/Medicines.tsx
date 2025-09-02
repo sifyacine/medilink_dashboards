@@ -130,12 +130,12 @@ export const Medicines: React.FC = () => {
 
       {/* Alerts */}
       {lowStockMedicines.length > 0 && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
           <div className="flex items-center space-x-2 mb-2">
             <AlertTriangle size={20} className="text-red-600" />
-            <h3 className="font-medium text-red-800">Low Stock Alert</h3>
+            <h3 className="font-medium text-red-800 dark:text-red-300">Low Stock Alert</h3>
           </div>
-          <p className="text-red-700 text-sm">
+          <p className="text-red-700 dark:text-red-300 text-sm">
             {lowStockMedicines.length} medicine(s) are running low on stock: {' '}
             {lowStockMedicines.map(m => m.name).join(', ')}
           </p>
@@ -144,28 +144,28 @@ export const Medicines: React.FC = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Medicines</p>
-              <p className="text-2xl font-bold text-gray-900">{medicines.length}</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Medicines</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">{medicines.length}</p>
             </div>
             <Package size={24} className="text-blue-600" />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Low Stock Items</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Low Stock Items</p>
               <p className="text-2xl font-bold text-red-600">{lowStockMedicines.length}</p>
             </div>
             <AlertTriangle size={24} className="text-red-600" />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Value</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Value</p>
               <p className="text-2xl font-bold text-green-600">
                 ${medicines.reduce((sum, m) => sum + (m.stock * m.price), 0).toFixed(2)}
               </p>

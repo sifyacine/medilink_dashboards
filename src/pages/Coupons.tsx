@@ -130,19 +130,19 @@ export const Coupons: React.FC = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Coupons</p>
-              <p className="text-2xl font-bold text-gray-900">{coupons.length}</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Coupons</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">{coupons.length}</p>
             </div>
             <Percent size={24} className="text-blue-600" />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Active Coupons</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Active Coupons</p>
               <p className="text-2xl font-bold text-green-600">{activeCoupons.length}</p>
             </div>
             <div className="text-green-600">
@@ -152,19 +152,19 @@ export const Coupons: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Usage</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Usage</p>
               <p className="text-2xl font-bold text-purple-600">{totalUsage}</p>
             </div>
             <Users size={24} className="text-purple-600" />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Usage Rate</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Usage Rate</p>
               <p className="text-2xl font-bold text-orange-600">
                 {Math.round((totalUsage / coupons.reduce((sum, c) => sum + c.usageLimit, 0)) * 100)}%
               </p>

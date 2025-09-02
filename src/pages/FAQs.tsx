@@ -123,19 +123,19 @@ export const FAQs: React.FC = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total FAQs</p>
-              <p className="text-2xl font-bold text-gray-900">{faqs.length}</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total FAQs</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">{faqs.length}</p>
             </div>
             <HelpCircle size={24} className="text-blue-600" />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Active FAQs</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Active FAQs</p>
               <p className="text-2xl font-bold text-green-600">{activeFAQs.length}</p>
             </div>
             <div className="text-green-600">
@@ -145,19 +145,19 @@ export const FAQs: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Categories</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Categories</p>
               <p className="text-2xl font-bold text-purple-600">{categories.length}</p>
             </div>
             <Tag size={24} className="text-purple-600" />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Views</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Views</p>
               <p className="text-2xl font-bold text-orange-600">{totalViews.toLocaleString()}</p>
             </div>
             <div className="text-orange-600">
@@ -171,18 +171,18 @@ export const FAQs: React.FC = () => {
       </div>
 
       {/* Categories Overview */}
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Categories Overview</h3>
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Categories Overview</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {categories.map((category) => {
             const categoryFAQs = faqs.filter(faq => faq.category === category);
             const categoryViews = categoryFAQs.reduce((sum, faq) => sum + faq.views, 0);
             
             return (
-              <div key={category} className="p-4 bg-gray-50 rounded-lg">
-                <h4 className="font-medium text-gray-900">{category}</h4>
-                <p className="text-sm text-gray-600">{categoryFAQs.length} FAQs</p>
-                <p className="text-sm text-gray-600">{categoryViews} views</p>
+              <div key={category} className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <h4 className="font-medium text-gray-900 dark:text-white">{category}</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{categoryFAQs.length} FAQs</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{categoryViews} views</p>
               </div>
             );
           })}

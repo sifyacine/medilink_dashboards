@@ -163,12 +163,12 @@ export const Products: React.FC = () => {
 
       {/* Alerts */}
       {outOfStockProducts.length > 0 && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
           <div className="flex items-center space-x-2 mb-2">
             <AlertTriangle size={20} className="text-red-600" />
-            <h3 className="font-medium text-red-800">Out of Stock Alert</h3>
+            <h3 className="font-medium text-red-800 dark:text-red-300">Out of Stock Alert</h3>
           </div>
-          <p className="text-red-700 text-sm">
+          <p className="text-red-700 dark:text-red-300 text-sm">
             {outOfStockProducts.length} product(s) are out of stock: {' '}
             {outOfStockProducts.map(p => p.name).join(', ')}
           </p>
@@ -176,12 +176,12 @@ export const Products: React.FC = () => {
       )}
 
       {lowStockProducts.length > 0 && (
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
           <div className="flex items-center space-x-2 mb-2">
             <AlertTriangle size={20} className="text-yellow-600" />
-            <h3 className="font-medium text-yellow-800">Low Stock Warning</h3>
+            <h3 className="font-medium text-yellow-800 dark:text-yellow-300">Low Stock Warning</h3>
           </div>
-          <p className="text-yellow-700 text-sm">
+          <p className="text-yellow-700 dark:text-yellow-300 text-sm">
             {lowStockProducts.length} product(s) are running low: {' '}
             {lowStockProducts.map(p => p.name).join(', ')}
           </p>
@@ -190,19 +190,19 @@ export const Products: React.FC = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Products</p>
-              <p className="text-2xl font-bold text-gray-900">{products.length}</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Products</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">{products.length}</p>
             </div>
             <Package size={24} className="text-blue-600" />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Active Products</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Active Products</p>
               <p className="text-2xl font-bold text-green-600">{activeProducts.length}</p>
             </div>
             <div className="text-green-600">
@@ -212,19 +212,19 @@ export const Products: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Low Stock</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Low Stock</p>
               <p className="text-2xl font-bold text-yellow-600">{lowStockProducts.length}</p>
             </div>
             <AlertTriangle size={24} className="text-yellow-600" />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Value</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Value</p>
               <p className="text-2xl font-bold text-green-600">${totalValue.toFixed(2)}</p>
             </div>
             <DollarSign size={24} className="text-green-600" />

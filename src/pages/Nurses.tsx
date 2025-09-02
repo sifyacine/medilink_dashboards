@@ -120,11 +120,11 @@ export const Nurses: React.FC = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Nurses</p>
-              <p className="text-2xl font-bold text-gray-900">{nurses.length}</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Nurses</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">{nurses.length}</p>
             </div>
             <div className="text-blue-600">
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -133,10 +133,10 @@ export const Nurses: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Active Nurses</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Active Nurses</p>
               <p className="text-2xl font-bold text-green-600">
                 {nurses.filter(n => n.status === 'Active').length}
               </p>
@@ -148,10 +148,10 @@ export const Nurses: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">On Leave</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">On Leave</p>
               <p className="text-2xl font-bold text-yellow-600">
                 {nurses.filter(n => n.status === 'On Leave').length}
               </p>
@@ -163,10 +163,10 @@ export const Nurses: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Avg Experience</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Avg Experience</p>
               <p className="text-2xl font-bold text-purple-600">
                 {Math.round(nurses.reduce((sum, n) => sum + n.experience, 0) / nurses.length)} years
               </p>

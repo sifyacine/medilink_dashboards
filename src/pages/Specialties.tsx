@@ -96,19 +96,19 @@ export const Specialties: React.FC = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Specialties</p>
-              <p className="text-2xl font-bold text-gray-900">{specialties.length}</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Specialties</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">{specialties.length}</p>
             </div>
             <Stethoscope size={24} className="text-blue-600" />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Doctors</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Doctors</p>
               <p className="text-2xl font-bold text-green-600">
                 {specialties.reduce((sum, s) => sum + s.doctorCount, 0)}
               </p>
@@ -116,10 +116,10 @@ export const Specialties: React.FC = () => {
             <Users size={24} className="text-green-600" />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Average per Specialty</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Average per Specialty</p>
               <p className="text-2xl font-bold text-purple-600">
                 {Math.round(specialties.reduce((sum, s) => sum + s.doctorCount, 0) / specialties.length)}
               </p>

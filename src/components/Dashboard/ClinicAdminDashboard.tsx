@@ -154,6 +154,28 @@ export const ClinicAdminDashboard: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Quick Actions */}
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <button className="p-4 text-left border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+            <Users size={24} className="text-blue-600 mb-2" />
+            <p className="font-medium text-gray-900 dark:text-white">Patient Management</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Manage patient folders and records</p>
+          </button>
+          <button className="p-4 text-left border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+            <Calendar size={24} className="text-green-600 mb-2" />
+            <p className="font-medium text-gray-900 dark:text-white">Appointment Management</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Review appointment requests</p>
+          </button>
+          <button className="p-4 text-left border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+            <Activity size={24} className="text-purple-600 mb-2" />
+            <p className="font-medium text-gray-900 dark:text-white">Staff Management</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Manage clinic staff and resources</p>
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -173,8 +173,8 @@ export const NurseDashboard: React.FC = () => {
           </button>
           <button className="p-4 text-left border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
             <Users size={24} className="text-blue-600 mb-2" />
-            <p className="font-medium text-gray-900 dark:text-white">Patient Care</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">View assigned patients</p>
+            <p className="font-medium text-gray-900 dark:text-white">Patient Folders</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Access patient medical records</p>
           </button>
         </div>
       </div>

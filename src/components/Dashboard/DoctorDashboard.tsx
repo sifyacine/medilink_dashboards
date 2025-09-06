@@ -167,13 +167,13 @@ export const DoctorDashboard: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <button className="p-4 text-left border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
             <Users size={24} className="text-blue-600 mb-2" />
-            <p className="font-medium text-gray-900 dark:text-white">View My Patients</p>
+            <p className="font-medium text-gray-900 dark:text-white">Patient Folders</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">Access patient records and history</p>
           </button>
           <button className="p-4 text-left border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
             <Calendar size={24} className="text-green-600 mb-2" />
-            <p className="font-medium text-gray-900 dark:text-white">Schedule Appointment</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Book new patient appointments</p>
+            <p className="font-medium text-gray-900 dark:text-white">Appointment Requests</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Review and approve appointments</p>
           </button>
           <button className="p-4 text-left border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
             <Pill size={24} className="text-purple-600 mb-2" />

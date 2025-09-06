@@ -10,6 +10,8 @@ import { Specialties } from './pages/Specialties';
 import { Medicines } from './pages/Medicines';
 import { Nurses } from './pages/Nurses';
 import { Doctors } from './pages/Doctors';
+import { Patients } from './pages/Patients';
+import { Appointments } from './pages/Appointments';
 import { Coupons } from './pages/Coupons';
 import { FAQs } from './pages/FAQs';
 import { Products } from './pages/Products';
@@ -79,6 +81,11 @@ function App() {
               } />
               
               {/* Multiple Role Access Routes */}
+              <Route path="patients" element={
+                <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin', 'Doctor', 'Nurse']}>
+                  <Patients />
+                </ProtectedRoute>
+              } />
               <Route path="medicines" element={
                 <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin', 'Nurse']}>
                   <Medicines />
@@ -94,10 +101,7 @@ function App() {
               } />
               <Route path="appointments" element={
                 <ProtectedRoute allowedRoles={['Clinic Admin', 'Employee']}>
-                  <div className="p-6 text-center">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">Appointments</h2>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">Manage clinic appointments</p>
-                  </div>
+                  <Appointments />
                 </ProtectedRoute>
               } />
               

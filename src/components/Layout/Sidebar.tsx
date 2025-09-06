@@ -32,6 +32,10 @@ const getNavigationForRole = (role: string) => {
     // Super User Navigation
     { name: 'User Management', href: '/users', icon: Users, roles: ['Super User'] },
     { name: 'Clinics', href: '/clinics', icon: Building2, roles: ['Super User'] },
+    
+    // Patient Management - Multiple Roles
+    { name: 'Patients', href: '/patients', icon: Users, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Nurse'] },
+    
     { name: 'Specialties', href: '/specialties', icon: Stethoscope, roles: ['Super User', 'Clinic Admin'] },
     { name: 'Medicines', href: '/medicines', icon: Pill, roles: ['Super User', 'Clinic Admin', 'Nurse'] },
     { name: 'Nurses', href: '/nurses', icon: UserCog, roles: ['Super User', 'Clinic Admin'] },
@@ -51,7 +55,7 @@ const getNavigationForRole = (role: string) => {
     { name: 'Vital Signs', href: '/vital-signs', icon: Activity, roles: ['Nurse'] },
     
     // Common for multiple roles
-    { name: 'Appointments', href: '/appointments', icon: Calendar, roles: ['Clinic Admin', 'Employee'] },
+    { name: 'Appointments', href: '/appointments', icon: Calendar, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Employee'] },
     { name: 'Chat', href: '/chat', icon: MessageCircle, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Nurse'] },
   ];
 

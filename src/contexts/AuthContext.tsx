@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 export interface User {
   id: string;
   email: string;
-  role: 'Super User' | 'Clinic Admin' | 'Doctor' | 'Nurse' | 'Employee';
+  role: 'Super User' | 'Clinic Admin' | 'Doctor' | 'Nurse' | 'Pharmacy';
   name: string;
   avatar?: string;
   clinicId?: string;
@@ -86,12 +86,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       },
       { 
         id: '5', 
-        email: 'employee@clinic.com', 
-        password: 'emp123', 
-        role: 'Employee' as const, 
-        name: 'Lisa Wilson',
+        email: 'pharmacy@clinic.com', 
+        password: 'pharmacy123', 
+        role: 'Pharmacy' as const, 
+        name: 'Alex Pharmacy Manager',
         clinicId: '1',
-        permissions: ['basic_access']
+        permissions: ['pharmacy_management', 'product_management', 'order_management', 'inventory_management']
       },
     ];
 

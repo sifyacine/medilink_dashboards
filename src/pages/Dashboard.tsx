@@ -5,7 +5,7 @@ import { SuperUserDashboard } from '../components/Dashboard/SuperUserDashboard';
 import { ClinicAdminDashboard } from '../components/Dashboard/ClinicAdminDashboard';
 import { DoctorDashboard } from '../components/Dashboard/DoctorDashboard';
 import { NurseDashboard } from '../components/Dashboard/NurseDashboard';
-import { EmployeeDashboard } from '../components/Dashboard/EmployeeDashboard';
+import { PharmacyDashboard } from '../components/Dashboard/PharmacyDashboard';
 
 export const Dashboard: React.FC = () => {
   const { user } = useAuth();
@@ -20,10 +20,10 @@ export const Dashboard: React.FC = () => {
         return <DoctorDashboard />;
       case 'Nurse':
         return <NurseDashboard />;
-      case 'Employee':
-        return <EmployeeDashboard />;
+      case 'Pharmacy':
+        return <PharmacyDashboard />;
       default:
-        return <EmployeeDashboard />;
+        return <PharmacyDashboard />;
     }
   };
 

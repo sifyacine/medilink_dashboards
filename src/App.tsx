@@ -16,6 +16,12 @@ import { Coupons } from './pages/Coupons';
 import { FAQs } from './pages/FAQs';
 import { Products } from './pages/Products';
 import { Chat } from './pages/Chat';
+import { PharmacyProducts } from './pages/Pharmacy/PharmacyProducts';
+import { PharmacyOrders } from './pages/Pharmacy/PharmacyOrders';
+import { PharmacyInventory } from './pages/Pharmacy/PharmacyInventory';
+import { PharmacyCategories } from './pages/Pharmacy/PharmacyCategories';
+import { PharmacyCustomers } from './pages/Pharmacy/PharmacyCustomers';
+import { PharmacyAnalytics } from './pages/Pharmacy/PharmacyAnalytics';
 import { MainLayout } from './components/Layout/MainLayout';
 
 function App() {
@@ -27,7 +33,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/*" element={
-              <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin', 'Doctor', 'Nurse', 'Employee']}>
+              <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin', 'Doctor', 'Nurse', 'Pharmacy']}>
                 <MainLayout />
               </ProtectedRoute>
             }>
@@ -100,7 +106,7 @@ function App() {
                 </ProtectedRoute>
               } />
               <Route path="appointments" element={
-                <ProtectedRoute allowedRoles={['Clinic Admin', 'Employee']}>
+                <ProtectedRoute allowedRoles={['Clinic Admin']}>
                   <Appointments />
                 </ProtectedRoute>
               } />
@@ -153,6 +159,38 @@ function App() {
               <Route path="chat" element={
                 <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin', 'Doctor', 'Nurse']}>
                   <Chat />
+                </ProtectedRoute>
+              } />
+              
+              {/* Pharmacy Routes */}
+              <Route path="pharmacy/products" element={
+                <ProtectedRoute allowedRoles={['Pharmacy']}>
+                  <PharmacyProducts />
+                </ProtectedRoute>
+              } />
+              <Route path="pharmacy/orders" element={
+                <ProtectedRoute allowedRoles={['Pharmacy']}>
+                  <PharmacyOrders />
+                </ProtectedRoute>
+              } />
+              <Route path="pharmacy/inventory" element={
+                <ProtectedRoute allowedRoles={['Pharmacy']}>
+                  <PharmacyInventory />
+                </ProtectedRoute>
+              } />
+              <Route path="pharmacy/categories" element={
+                <ProtectedRoute allowedRoles={['Pharmacy']}>
+                  <PharmacyCategories />
+                </ProtectedRoute>
+              } />
+              <Route path="pharmacy/customers" element={
+                <ProtectedRoute allowedRoles={['Pharmacy']}>
+                  <PharmacyCustomers />
+                </ProtectedRoute>
+              } />
+              <Route path="pharmacy/analytics" element={
+                <ProtectedRoute allowedRoles={['Pharmacy']}>
+                  <PharmacyAnalytics />
                 </ProtectedRoute>
               } />
             </Route>

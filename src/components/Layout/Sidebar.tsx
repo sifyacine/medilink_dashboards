@@ -25,7 +25,7 @@ import { usePermissions } from '../../hooks/usePermissions';
 
 const getNavigationForRole = (role: string) => {
   const baseNavigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: BarChart3, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Nurse', 'Employee'] },
+    { name: 'Dashboard', href: '/dashboard', icon: BarChart3, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Nurse', 'Pharmacy'] },
   ];
 
   const roleSpecificNavigation = [
@@ -55,8 +55,16 @@ const getNavigationForRole = (role: string) => {
     { name: 'Vital Signs', href: '/vital-signs', icon: Activity, roles: ['Nurse'] },
     
     // Common for multiple roles
-    { name: 'Appointments', href: '/appointments', icon: Calendar, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Employee'] },
+    { name: 'Appointments', href: '/appointments', icon: Calendar, roles: ['Super User', 'Clinic Admin', 'Doctor'] },
     { name: 'Chat', href: '/chat', icon: MessageCircle, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Nurse'] },
+    
+    // Pharmacy Specific
+    { name: 'Products', href: '/pharmacy/products', icon: Package, roles: ['Pharmacy'] },
+    { name: 'Orders', href: '/pharmacy/orders', icon: Calendar, roles: ['Pharmacy'] },
+    { name: 'Inventory', href: '/pharmacy/inventory', icon: Package, roles: ['Pharmacy'] },
+    { name: 'Categories', href: '/pharmacy/categories', icon: Package, roles: ['Pharmacy'] },
+    { name: 'Customers', href: '/pharmacy/customers', icon: Users, roles: ['Pharmacy'] },
+    { name: 'Analytics', href: '/pharmacy/analytics', icon: BarChart3, roles: ['Pharmacy'] },
   ];
 
   return [...baseNavigation, ...roleSpecificNavigation].filter(item => 

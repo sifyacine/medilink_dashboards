@@ -27,8 +27,9 @@ export const usePermissions = () => {
       'Nurse': [
         'patient_care', 'appointments', 'medications', 'vital_signs'
       ],
-      'Employee': [
-        'basic_access', 'appointments_view'
+      'Pharmacy': [
+        'pharmacy_management', 'product_management', 'order_management', 
+        'inventory_management', 'customer_management', 'analytics_view'
       ]
     };
 

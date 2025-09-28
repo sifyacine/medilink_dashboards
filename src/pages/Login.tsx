@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { Building2, Lock, Mail, AlertCircle } from 'lucide-react';
+import { Lock, Mail, AlertCircle } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 export const Login: React.FC = () => {
@@ -33,12 +33,14 @@ export const Login: React.FC = () => {
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <div className="flex justify-center">
-            <div className="w-16 h-16 bg-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
-              <Building2 size={32} className="text-white" />
-            </div>
+            <img 
+              src="/assets/logo.png" 
+              alt="Medilink Logo" 
+              className="w-16 h-16 rounded-2xl shadow-lg"
+            />
           </div>
           <h2 className="mt-6 text-3xl font-bold text-white">
-            Welcome to ClinicHub
+            Welcome to Medilink
           </h2>
           <p className="mt-2 text-slate-300">
             Sign in to your account to continue

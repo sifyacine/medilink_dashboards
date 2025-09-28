@@ -36,7 +36,7 @@ export const Login: React.FC = () => {
             <img 
               src="/assets/logo.png" 
               alt="Medilink Logo" 
-              className="w-16 h-16 rounded-2xl shadow-lg"
+              className="w-24 h-24 rounded-2xl shadow-lg"
             />
           </div>
           <h2 className="mt-6 text-3xl font-bold text-white">

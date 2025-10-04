@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { PageHeader } from '../components/Common/PageHeader';
-import { DataTable } from '../components/Common/DataTable';
-import { Modal } from '../components/Common/Modal';
-import { useAuth } from '../contexts/AuthContext';
+import { PageHeader } from '../Common/PageHeader';
+import { DataTable } from '../Common/DataTable';
+import { Modal } from '../Common/Modal';
+import { useAuth } from '../../contexts/AuthContext';
 import { 
   Calendar, 
   Clock, 
@@ -14,7 +14,7 @@ import {
   Mail,
   MapPin
 } from 'lucide-react';
-import { Appointment } from '../types/patient';
+import { Appointment } from '../../types/patient';
 
 export const Appointments: React.FC = () => {
   const { user } = useAuth();

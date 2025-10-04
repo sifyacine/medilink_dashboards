@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { PageHeader } from '../components/Common/PageHeader';
-import { DataTable } from '../components/Common/DataTable';
-import { Modal } from '../components/Common/Modal';
+import { PageHeader } from '../../components/Common/PageHeader';
+import { DataTable } from '../../components/Common/DataTable';
+import { Modal } from '../../components/Common/Modal';
 import { MapPin, Phone, Mail, CheckCircle, Clock } from 'lucide-react';
 
 interface Clinic {

@@ -106,26 +106,20 @@ function App() {
                 </ProtectedRoute>
               } />
               <Route path="appointments" element={
-                <ProtectedRoute allowedRoles={['Clinic Admin']}>
+                <ProtectedRoute allowedRoles={['Clinic Admin', 'Doctor']}>
                   <Appointments />
                 </ProtectedRoute>
               } />
-              
+
               {/* Doctor Specific Routes */}
               <Route path="my-patients" element={
                 <ProtectedRoute allowedRoles={['Doctor']}>
-                  <div className="p-6 text-center">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">My Patients</h2>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">View and manage your assigned patients</p>
-                  </div>
+                  <Patients />
                 </ProtectedRoute>
               } />
               <Route path="my-appointments" element={
                 <ProtectedRoute allowedRoles={['Doctor']}>
-                  <div className="p-6 text-center">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">My Appointments</h2>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">Manage your appointment schedule</p>
-                  </div>
+                  <Appointments />
                 </ProtectedRoute>
               } />
               <Route path="prescriptions" element={

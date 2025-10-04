@@ -12,6 +12,7 @@ import { Nurses } from './pages/Nurse/Nurses';
 import { Doctors } from './pages/Doctor/Doctors';
 import { Patients } from './components/Shared/Patients';
 import { Appointments } from './components/Shared/Appointments';
+import { PrescriptionPage } from './components/PrescriptionPage'; // Import the new page
 import { Coupons } from './pages/Coupons';
 import { FAQs } from './pages/FAQs';
 import { Products } from './pages/Products';
@@ -122,15 +123,7 @@ function App() {
                   <Appointments />
                 </ProtectedRoute>
               } />
-              <Route path="prescriptions" element={
-                <ProtectedRoute allowedRoles={['Doctor']}>
-                  <div className="p-6 text-center">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">Prescriptions</h2>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">Manage patient prescriptions</p>
-                  </div>
-                </ProtectedRoute>
-              } />
-              
+              <Route path="/prescriptions" element={<PrescriptionPage />} /> {/* Add this route */}
               {/* Nurse Specific Routes */}
               <Route path="patient-care" element={
                 <ProtectedRoute allowedRoles={['Nurse']}>

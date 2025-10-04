@@ -3,23 +3,7 @@ import { PageHeader } from '../Common/PageHeader';
 import { DataTable } from '../Common/DataTable';
 import { Modal } from '../Common/Modal';
 import { useAuth } from '../../contexts/AuthContext';
-import { 
-  User, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Calendar, 
-  Heart, 
-  FileText, 
-  Plus,
-  Eye,
-  Edit,
-  Trash2,
-  AlertCircle,
-  Clock,
-  CheckCircle,
-  XCircle
-} from 'lucide-react';
+import { User, Phone, Mail, MapPin, Calendar, Heart, FileText, Plus, Eye, CreditCard as Edit, Trash2, AlertCircle, Clock, CheckCircle, XCircle } from 'lucide-react';
 import { Patient, MedicalRecord, Appointment } from '../../types/patient';
 
 export const Patients: React.FC = () => {

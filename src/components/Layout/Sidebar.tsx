@@ -45,8 +45,7 @@ const getNavigationForRole = (role: string) => {
     { name: 'FAQs', href: '/faqs', icon: HelpCircle, roles: ['Super User', 'Clinic Admin'] },
     
     // Doctor Specific
-    { name: 'My Patients', href: '/my-patients', icon: Users, roles: ['Doctor'] },
-    { name: 'My Appointments', href: '/my-appointments', icon: Calendar, roles: ['Doctor'] },
+   
     { name: 'Prescriptions', href: '/prescriptions', icon: Pill, roles: ['Doctor'] },
     
     // Nurse Specific

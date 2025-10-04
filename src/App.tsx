@@ -12,7 +12,7 @@ import { Nurses } from './pages/Nurse/Nurses';
 import { Doctors } from './pages/Doctor/Doctors';
 import { Patients } from './components/Shared/Patients';
 import { Appointments } from './components/Shared/Appointments';
-import { PrescriptionPage } from './components/PrescriptionPage';
+import { PrescriptionPage } from './pages/PrescriptionPage';
 import { Coupons } from './pages/Coupons';
 import { FAQs } from './pages/FAQs';
 import { Products } from './pages/Products';

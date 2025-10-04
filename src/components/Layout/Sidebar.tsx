@@ -46,7 +46,7 @@ const getNavigationForRole = (role: string) => {
     
     // Doctor Specific
    
-    { name: 'Prescriptions', href: '/prescriptions', icon: Pill, roles: ['Doctor'] },
+    { name: 'PrescriptionPage', href: '/prescriptions', icon: Pill, roles: ['Doctor'] },
     
     // Nurse Specific
     { name: 'Patient Care', href: '/patient-care', icon: Users, roles: ['Nurse'] },

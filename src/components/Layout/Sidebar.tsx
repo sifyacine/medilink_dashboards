@@ -22,6 +22,7 @@ import {
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import { usePermissions } from '../../hooks/usePermissions';
+import { PrescriptionPage } from './components/PrescriptionPage'; // Import the new page
 
 const getNavigationForRole = (role: string) => {
   const baseNavigation = [

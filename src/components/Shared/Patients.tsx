@@ -93,7 +93,6 @@ export const Patients: React.FC = () => {
       id: '1',
       patientId: '1',
       doctorId: '1',
-      nurseId: '1',
       date: '2024-02-10',
       type: 'Consultation',
       diagnosis: 'Hypertension follow-up',

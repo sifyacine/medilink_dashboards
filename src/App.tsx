@@ -68,21 +68,13 @@ function App() {
               
               {/* Multiple Role Access Routes */}
               <Route path="patients" element={
-                <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin', 'Doctor', 'Nurse']}>
+                <ProtectedRoute allowedRoles={['Clinic Admin', 'Doctor']}>
                   <Patients />
                 </ProtectedRoute>
               } />
               <Route path="medicines" element={
-                <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin', 'Nurse']}>
+                <ProtectedRoute allowedRoles={['Clinic Admin']}>
                   <Medicines />
-                </ProtectedRoute>
-              } />
-              <Route path="medications" element={
-                <ProtectedRoute allowedRoles={['Nurse']}>
-                  <div className="p-6 text-center">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">Medication Management</h2>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">Manage patient medications</p>
-                  </div>
                 </ProtectedRoute>
               } />
               <Route path="appointments" element={

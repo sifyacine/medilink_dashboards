@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 export interface User {
   id: string;
   email: string;
-  role: 'Super User' | 'Clinic Admin' | 'Doctor' | 'Nurse' | 'Pharmacy';
+  role: 'Clinic Admin' | 'Doctor' | 'Pharmacy';
   name: string;
   avatar?: string;
   clinicId?: string;

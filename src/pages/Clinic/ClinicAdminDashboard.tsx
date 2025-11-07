@@ -52,7 +52,7 @@ export const ClinicAdminDashboard: React.FC = () => {
     { id: 1, action: 'New doctor joined', detail: 'Dr. Emily Johnson - Cardiology', time: '1 hour ago' },
     { id: 2, action: 'Appointment scheduled', detail: 'Patient John Doe with Dr. Smith', time: '2 hours ago' },
     { id: 3, action: 'Medicine restocked', detail: 'Paracetamol inventory updated', time: '4 hours ago' },
-    { id: 4, action: 'Nurse shift updated', detail: 'Maria Rodriguez - Night shift', time: '6 hours ago' },
+    { id: 4, action: 'Staff schedule updated', detail: 'Clinic staff - Night shift', time: '6 hours ago' },
   ];
 
   const upcomingTasks = [

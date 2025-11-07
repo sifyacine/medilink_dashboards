@@ -105,10 +105,8 @@ export const Login: React.FC = () => {
             <div className="text-sm text-gray-600">
               <p className="font-medium mb-2">Demo Credentials:</p>
               <div className="space-y-1">
-                <p><span className="font-medium">Super User:</span> superuser@clinic.com / super123</p>
                 <p><span className="font-medium">Clinic Admin:</span> clinicadmin@clinic.com / clinic123</p>
                 <p><span className="font-medium">Doctor:</span> doctor@clinic.com / doctor123</p>
-                <p><span className="font-medium">Nurse:</span> nurse@clinic.com / nurse123</p>
                 <p><span className="font-medium">Pharmacy:</span> pharmacy@clinic.com / pharmacy123</p>
               </div>
             </div>

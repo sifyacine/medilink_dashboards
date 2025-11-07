@@ -49,46 +49,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     
     // Mock authentication - in real app, this would be an API call
     const mockUsers = [
-      { 
-        id: '1', 
-        email: 'superuser@clinic.com', 
-        password: 'super123', 
-        role: 'Super User' as const, 
-        name: 'Dr. Sarah Johnson',
-        permissions: ['all']
-      },
-      { 
-        id: '2', 
-        email: 'clinicadmin@clinic.com', 
-        password: 'clinic123', 
-        role: 'Clinic Admin' as const, 
+      {
+        id: '2',
+        email: 'clinicadmin@clinic.com',
+        password: 'clinic123',
+        role: 'Clinic Admin' as const,
         name: 'John Smith',
         clinicId: '1',
         permissions: ['clinic_management', 'staff_management', 'patient_management']
       },
-      { 
-        id: '3', 
-        email: 'doctor@clinic.com', 
-        password: 'doctor123', 
-        role: 'Doctor' as const, 
+      {
+        id: '3',
+        email: 'doctor@clinic.com',
+        password: 'doctor123',
+        role: 'Doctor' as const,
         name: 'Dr. Michael Chen',
         clinicId: '1',
         permissions: ['patient_care', 'appointments', 'prescriptions']
       },
-      { 
-        id: '4', 
-        email: 'nurse@clinic.com', 
-        password: 'nurse123', 
-        role: 'Nurse' as const, 
-        name: 'Maria Rodriguez',
-        clinicId: '1',
-        permissions: ['patient_care', 'appointments', 'medications']
-      },
-      { 
-        id: '5', 
-        email: 'pharmacy@clinic.com', 
-        password: 'pharmacy123', 
-        role: 'Pharmacy' as const, 
+      {
+        id: '5',
+        email: 'pharmacy@clinic.com',
+        password: 'pharmacy123',
+        role: 'Pharmacy' as const,
         name: 'Alex Pharmacy Manager',
         clinicId: '1',
         permissions: ['pharmacy_management', 'product_management', 'order_management', 'inventory_management']

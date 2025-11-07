@@ -39,34 +39,29 @@ function App() {
             }>
               <Route path="dashboard" element={<Dashboard />} />
               
-                            {/* Super User & Clinic Admin Routes */}
+                            {/* Clinic Admin Only Routes */}
               <Route path="specialties" element={
-                <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin']}>
+                <ProtectedRoute allowedRoles={['Clinic Admin']}>
                   <Specialties />
                 </ProtectedRoute>
               } />
-              <Route path="nurses" element={
-                <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin']}>
-                  <Nurses />
-                </ProtectedRoute>
-              } />
               <Route path="doctors" element={
-                <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin']}>
+                <ProtectedRoute allowedRoles={['Clinic Admin']}>
                   <Doctors />
                 </ProtectedRoute>
               } />
               <Route path="products" element={
-                <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin']}>
+                <ProtectedRoute allowedRoles={['Clinic Admin']}>
                   <Products />
                 </ProtectedRoute>
               } />
               <Route path="coupons" element={
-                <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin']}>
+                <ProtectedRoute allowedRoles={['Clinic Admin']}>
                   <Coupons />
                 </ProtectedRoute>
               } />
               <Route path="faqs" element={
-                <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin']}>
+                <ProtectedRoute allowedRoles={['Clinic Admin']}>
                   <FAQs />
                 </ProtectedRoute>
               } />

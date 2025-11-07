@@ -26,38 +26,28 @@ import { PrescriptionPage } from './components/PrescriptionPage'; // Import the 
 
 const getNavigationForRole = (role: string) => {
   const baseNavigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: BarChart3, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Nurse', 'Pharmacy'] },
+    { name: 'Dashboard', href: '/dashboard', icon: BarChart3, roles: ['Clinic Admin', 'Doctor', 'Pharmacy'] },
   ];
 
   const roleSpecificNavigation = [
-    // Super User Navigation
-    { name: 'User Management', href: '/users', icon: Users, roles: ['Super User'] },
-    { name: 'Clinics', href: '/clinics', icon: Building2, roles: ['Super User'] },
-    
     // Patient Management - Multiple Roles
-    { name: 'Patients', href: '/patients', icon: Users, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Nurse'] },
-    
-    { name: 'Specialties', href: '/specialties', icon: Stethoscope, roles: ['Super User', 'Clinic Admin'] },
-    { name: 'Medicines', href: '/medicines', icon: Pill, roles: ['Super User', 'Clinic Admin', 'Nurse'] },
-    { name: 'Nurses', href: '/nurses', icon: UserCog, roles: ['Super User', 'Clinic Admin'] },
-    { name: 'Doctors', href: '/doctors', icon: UserCheck, roles: ['Super User', 'Clinic Admin'] },
-    { name: 'Products', href: '/products', icon: Package, roles: ['Super User', 'Clinic Admin'] },
-    { name: 'Coupons', href: '/coupons', icon: Ticket, roles: ['Super User', 'Clinic Admin'] },
-    { name: 'FAQs', href: '/faqs', icon: HelpCircle, roles: ['Super User', 'Clinic Admin'] },
-    
+    { name: 'Patients', href: '/patients', icon: Users, roles: ['Clinic Admin', 'Doctor'] },
+
+    // Clinic Admin Navigation
+    { name: 'Specialties', href: '/specialties', icon: Stethoscope, roles: ['Clinic Admin'] },
+    { name: 'Medicines', href: '/medicines', icon: Pill, roles: ['Clinic Admin'] },
+    { name: 'Doctors', href: '/doctors', icon: UserCheck, roles: ['Clinic Admin'] },
+    { name: 'Products', href: '/products', icon: Package, roles: ['Clinic Admin'] },
+    { name: 'Coupons', href: '/coupons', icon: Ticket, roles: ['Clinic Admin'] },
+    { name: 'FAQs', href: '/faqs', icon: HelpCircle, roles: ['Clinic Admin'] },
+
     // Doctor Specific
-   
     { name: 'Prescriptions', href: '/PrescriptionPage', icon: Pill, roles: ['Doctor'] },
-    
-    // Nurse Specific
-    { name: 'Patient Care', href: '/patient-care', icon: Users, roles: ['Nurse'] },
-    { name: 'Medications', href: '/medications', icon: Pill, roles: ['Nurse'] },
-    { name: 'Vital Signs', href: '/vital-signs', icon: Activity, roles: ['Nurse'] },
-    
+
     // Common for multiple roles
-    { name: 'Appointments', href: '/appointments', icon: Calendar, roles: ['Super User', 'Clinic Admin', 'Doctor'] },
-    { name: 'Chat', href: '/chat', icon: MessageCircle, roles: ['Super User', 'Clinic Admin', 'Doctor', 'Nurse'] },
-    
+    { name: 'Appointments', href: '/appointments', icon: Calendar, roles: ['Clinic Admin', 'Doctor'] },
+    { name: 'Chat', href: '/chat', icon: MessageCircle, roles: ['Clinic Admin', 'Doctor'] },
+
     // Pharmacy Specific
     { name: 'Products', href: '/pharmacy/products', icon: Package, roles: ['Pharmacy'] },
     { name: 'Orders', href: '/pharmacy/orders', icon: Calendar, roles: ['Pharmacy'] },
@@ -67,7 +57,7 @@ const getNavigationForRole = (role: string) => {
     { name: 'Analytics', href: '/pharmacy/analytics', icon: BarChart3, roles: ['Pharmacy'] },
   ];
 
-  return [...baseNavigation, ...roleSpecificNavigation].filter(item => 
+  return [...baseNavigation, ...roleSpecificNavigation].filter(item =>
     item.roles.includes(role)
   );
 };

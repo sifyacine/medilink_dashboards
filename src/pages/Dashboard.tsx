@@ -10,14 +10,10 @@ export const Dashboard: React.FC = () => {
 
   const renderDashboard = () => {
     switch (user?.role) {
-      case 'Super User':
-        return <SuperUserDashboard />;
       case 'Clinic Admin':
         return <ClinicAdminDashboard />;
       case 'Doctor':
         return <DoctorDashboard />;
-      case 'Nurse':
-        return <NurseDashboard />;
       case 'Pharmacy':
         return <PharmacyDashboard />;
       default:

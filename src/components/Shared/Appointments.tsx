@@ -115,10 +115,9 @@ export const Appointments: React.FC = () => {
 
   // Filter appointments based on user role
   const getFilteredAppointments = () => {
-    if (user?.role === 'Super User') return appointments;
     if (user?.role === 'Clinic Admin') return appointments.filter(a => a.clinicId === user.clinicId);
     if (user?.role === 'Doctor') return appointments.filter(a => a.doctorId === user.id);
-    if (user?.role === 'Employee') return appointments.filter(a => a.clinicId === user.clinicId);
+    if (user?.role === 'Pharmacy') return appointments.filter(a => a.clinicId === user.clinicId);
     return [];
   };
 

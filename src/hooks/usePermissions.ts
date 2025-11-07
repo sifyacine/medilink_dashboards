@@ -5,12 +5,7 @@ export const usePermissions = () => {
 
   const hasPermission = (permission: string): boolean => {
     if (!user) return false;
-    
-    // Super User has all permissions
-    if (user.role === 'Super User' || user.permissions.includes('all')) {
-      return true;
-    }
-    
+
     return user.permissions.includes(permission);
   };
 

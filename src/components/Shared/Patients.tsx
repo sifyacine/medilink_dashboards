@@ -158,10 +158,9 @@ export const Patients: React.FC = () => {
 
   // Filter patients based on user role
   const getFilteredPatients = () => {
-    if (user?.role === 'Super User') return patients;
     if (user?.role === 'Clinic Admin') return patients.filter(p => p.clinicId === user.clinicId);
     if (user?.role === 'Doctor') return patients.filter(p => p.assignedDoctorId === user.id);
-    if (user?.role === 'Nurse') return patients.filter(p => p.assignedNurseId === user.id);
+    if (user?.role === 'Pharmacy') return patients.filter(p => p.clinicId === user.clinicId);
     return [];
   };
 

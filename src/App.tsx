@@ -100,25 +100,7 @@ function App() {
                 </ProtectedRoute>
               } />
 
-              {/* Nurse Specific Routes */}
-              <Route path="patient-care" element={
-                <ProtectedRoute allowedRoles={['Nurse']}>
-                  <div className="p-6 text-center">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">Patient Care</h2>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">Coordinate patient care activities</p>
-                  </div>
-                </ProtectedRoute>
-              } />
-              <Route path="vital-signs" element={
-                <ProtectedRoute allowedRoles={['Nurse']}>
-                  <div className="p-6 text-center">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">Vital Signs</h2>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">Record and monitor patient vital signs</p>
-                  </div>
-                </ProtectedRoute>
-              } />
-              
-              {/* Chat - Multiple Roles */}
+                            {/* Chat - Multiple Roles */}
               <Route path="chat" element={
                 <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin', 'Doctor', 'Nurse']}>
                   <Chat />

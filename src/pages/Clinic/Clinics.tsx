@@ -14,7 +14,6 @@ interface Clinic {
   registrationDate: string;
   specialties: string[];
   doctors: number;
-  nurses: number;
 }
 
 export const Clinics: React.FC = () => {

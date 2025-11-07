@@ -39,22 +39,7 @@ function App() {
             }>
               <Route path="dashboard" element={<Dashboard />} />
               
-              {/* Super User Only Routes */}
-              <Route path="clinics" element={
-                <ProtectedRoute allowedRoles={['Super User']}>
-                  <Clinics />
-                </ProtectedRoute>
-              } />
-              <Route path="users" element={
-                <ProtectedRoute allowedRoles={['Super User']}>
-                  <div className="p-6 text-center">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">User Management</h2>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">Manage all system users</p>
-                  </div>
-                </ProtectedRoute>
-              } />
-              
-              {/* Super User & Clinic Admin Routes */}
+                            {/* Super User & Clinic Admin Routes */}
               <Route path="specialties" element={
                 <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin']}>
                   <Specialties />

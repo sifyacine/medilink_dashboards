@@ -102,7 +102,7 @@ function App() {
 
                             {/* Chat - Multiple Roles */}
               <Route path="chat" element={
-                <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin', 'Doctor', 'Nurse']}>
+                <ProtectedRoute allowedRoles={['Clinic Admin', 'Doctor']}>
                   <Chat />
                 </ProtectedRoute>
               } />

@@ -32,7 +32,6 @@ export const Clinics: React.FC = () => {
       registrationDate: '2023-01-15',
       specialties: ['Cardiology', 'Neurology', 'Pediatrics'],
       doctors: 12,
-      nurses: 18,
     },
     {
       id: '2',
@@ -44,7 +43,6 @@ export const Clinics: React.FC = () => {
       registrationDate: '2023-12-01',
       specialties: ['General Medicine', 'Dermatology'],
       doctors: 8,
-      nurses: 12,
     },
     {
       id: '3',
@@ -56,7 +54,6 @@ export const Clinics: React.FC = () => {
       registrationDate: '2022-08-20',
       specialties: ['Emergency', 'Surgery', 'ICU', 'Maternity'],
       doctors: 25,
-      nurses: 45,
     },
   ];
 

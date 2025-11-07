@@ -33,7 +33,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/*" element={
-              <ProtectedRoute allowedRoles={['Super User', 'Clinic Admin', 'Doctor', 'Nurse', 'Pharmacy']}>
+              <ProtectedRoute allowedRoles={['Clinic Admin', 'Doctor', 'Pharmacy']}>
                 <MainLayout />
               </ProtectedRoute>
             }>

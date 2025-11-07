@@ -14,7 +14,6 @@ import { Bar, Doughnut } from 'react-chartjs-2';
 export const ClinicAdminDashboard: React.FC = () => {
   const stats = [
     { name: 'Total Doctors', value: '12', change: '+2', icon: Users, color: 'bg-blue-500' },
-    { name: 'Total Nurses', value: '18', change: '+3', icon: UserCog, color: 'bg-green-500' },
     { name: 'Today\'s Appointments', value: '45', change: '+8', icon: Calendar, color: 'bg-purple-500' },
     { name: 'Monthly Revenue', value: '$125K', change: '+15%', icon: DollarSign, color: 'bg-emerald-500' },
   ];

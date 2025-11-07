@@ -40,7 +40,7 @@ export const Chat: React.FC = () => {
     {
       id: '2',
       name: 'Maria Rodriguez',
-      role: 'Nurse',
+      role: 'Pharmacy Technician',
       avatar: 'MR',
       lastMessage: 'Medicine inventory is updated',
       lastMessageTime: '1 hour ago',

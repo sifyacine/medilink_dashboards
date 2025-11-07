@@ -8,7 +8,6 @@ import { Dashboard } from './pages/Dashboard';
 import { Clinics } from './pages/Clinic/Clinics';
 import { Specialties } from './pages/Specialties';
 import { Medicines } from './pages/Medicines';
-import { Nurses } from './pages/Nurse/Nurses';
 import { Doctors } from './pages/Doctor/Doctors';
 import { Patients } from './components/Shared/Patients';
 import { Appointments } from './components/Shared/Appointments';

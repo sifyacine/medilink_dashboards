@@ -45,7 +45,6 @@ export const Patients: React.FC = () => {
         insuranceNumber: 'BC123456789'
       },
       assignedDoctorId: '1',
-      assignedNurseId: '1',
       clinicId: '1',
       status: 'Active',
       createdDate: '2024-01-15',

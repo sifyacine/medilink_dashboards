@@ -1,10 +1,8 @@
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { usePermissions } from '../hooks/usePermissions';
-import { SuperUserDashboard } from '../components/Dashboard/SuperUserDashboard';
 import { ClinicAdminDashboard } from './Clinic/ClinicAdminDashboard';
 import { DoctorDashboard } from './Doctor/DoctorDashboard';
-import { NurseDashboard } from './Nurse/NurseDashboard';
 import { PharmacyDashboard } from '../components/Dashboard/PharmacyDashboard';
 
 export const Dashboard: React.FC = () => {

@@ -78,8 +78,7 @@ export const Clinics: React.FC = () => {
       )
     },
     { key: 'doctors', label: 'Doctors', sortable: true },
-    { key: 'nurses', label: 'Nurses', sortable: true },
-  ];
+      ];
 
   const handleView = (clinic: Clinic) => {
     setSelectedClinic(clinic);

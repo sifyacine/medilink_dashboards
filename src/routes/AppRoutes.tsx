@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
-import { ProtectedRoute } from '../components/common/ProtectedRouteWrapper';
+import { RouteGuard } from '../components/common/RouteGuard';
 import { SignIn } from '../pages/auth/SignIn';
 import { DoctorDashboard } from '../pages/Doctor/Dashboard';
 import { Patients } from '../pages/Doctor/Patients';
@@ -29,15 +29,15 @@ function AppRoutes() {
 
             {/* Main Layout Routes */}
             <Route path="/*" element={
-              <ProtectedRoute allowedRoles={[UserRole.CLINIC_ADMIN, UserRole.DOCTOR, UserRole.PHARMACY, UserRole.NURSE, UserRole.SUPER_USER]}>
+              <RouteGuard allowedRoles={[UserRole.CLINIC_ADMIN, UserRole.DOCTOR, UserRole.PHARMACY, UserRole.NURSE, UserRole.SUPER_USER]}>
                 <DashboardLayout />
-              </ProtectedRoute>
+              </RouteGuard>
             }>
               {/* Doctor & Clinic Admin Routes */}
               <Route element={
-                <ProtectedRoute allowedRoles={[UserRole.CLINIC_ADMIN, UserRole.DOCTOR]}>
+                <RouteGuard allowedRoles={[UserRole.CLINIC_ADMIN, UserRole.DOCTOR]}>
                   <Outlet />
-                </ProtectedRoute>
+                </RouteGuard>
               }>
                 <Route path="dashboard" element={<DoctorDashboard />} />
                 <Route path="patients" element={<Patients />} />
@@ -47,9 +47,9 @@ function AppRoutes() {
 
               {/* Doctor Only Routes */}
               <Route element={
-                <ProtectedRoute allowedRoles={[UserRole.DOCTOR]}>
+                <RouteGuard allowedRoles={[UserRole.DOCTOR]}>
                   <Outlet />
-                </ProtectedRoute>
+                </RouteGuard>
               }>
                 <Route path="my-patients" element={<Patients />} />
                 <Route path="my-appointments" element={<Appointments />} />
@@ -58,9 +58,9 @@ function AppRoutes() {
 
               {/* Pharmacy Routes */}
               <Route path="pharmacy" element={
-                <ProtectedRoute allowedRoles={[UserRole.PHARMACY]}>
+                <RouteGuard allowedRoles={[UserRole.PHARMACY]}>
                   <Outlet />
-                </ProtectedRoute>
+                </RouteGuard>
               }>
                 <Route path="products" element={<Products />} />
                 <Route path="orders" element={<Orders />} />

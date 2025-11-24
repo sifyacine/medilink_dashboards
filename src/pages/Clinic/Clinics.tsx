@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { PageHeader } from '../../components/Common/PageHeader';
-import { DataTable } from '../../components/Common/DataTable';
-import { Modal } from '../../components/Common/Modal';
+import { PageHeader } from '../../components/common/PageHeader';
+import { DataTable } from '../../components/tables/DataTable';
+import { Modal } from '../../components/common/Modal';
 import { MapPin, Phone, Mail, CheckCircle, Clock } from 'lucide-react';
 
 interface Clinic {
@@ -65,18 +65,17 @@ export const Clinics: React.FC = () => {
     { key: 'name', label: 'Clinic Name', sortable: true },
     { key: 'location', label: 'Location', sortable: true },
     { key: 'contact', label: 'Contact', sortable: false },
-    { 
-      key: 'status', 
-      label: 'Status', 
+    {
+      key: 'status',
+      label: 'Status',
       sortable: true,
       render: (value: string) => (
-        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-          value === 'Active' 
-            ? 'bg-green-100 text-green-800' 
+        <span className={`px-2 py-1 rounded-full text-xs font-medium ${value === 'Active'
+            ? 'bg-green-100 text-green-800'
             : value === 'Pending'
-            ? 'bg-yellow-100 text-yellow-800'
-            : 'bg-gray-100 text-gray-800'
-        }`}>
+              ? 'bg-yellow-100 text-yellow-800'
+              : 'bg-gray-100 text-gray-800'
+          }`}>
           {value}
         </span>
       )
@@ -116,8 +115,8 @@ export const Clinics: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <PageHeader 
-        title="Clinics Management" 
+      <PageHeader
+        title="Clinics Management"
         description="Manage clinic registrations and monitor clinic network"
         action={{ label: 'Add New Clinic', onClick: handleAddClinic }}
       />
@@ -263,7 +262,7 @@ export const Clinics: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             <div>
               <h4 className="font-medium text-gray-900 mb-3">Specialties</h4>
               <div className="flex flex-wrap gap-2">

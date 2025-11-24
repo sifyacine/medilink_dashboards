@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { ProtectedRoute } from '../components/common/ProtectedRoute';
@@ -16,6 +16,7 @@ import { Categories } from '../pages/seller/Categories';
 import { Customers } from '../pages/seller/Customers';
 import { Analytics } from '../pages/seller/Analytics';
 import { DashboardLayout } from '../layouts/DashboardLayout';
+import { UserRole } from '../types/auth';
 
 function AppRoutes() {
   return (
@@ -25,78 +26,49 @@ function AppRoutes() {
           <Routes>
             <Route path="/login" element={<SignIn />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+            {/* Main Layout Routes */}
             <Route path="/*" element={
-              <ProtectedRoute allowedRoles={['Clinic Admin', 'Doctor', 'Pharmacy']}>
+              <ProtectedRoute allowedRoles={[UserRole.CLINIC_ADMIN, UserRole.DOCTOR, UserRole.PHARMACY, UserRole.NURSE, UserRole.SUPER_USER]}>
                 <DashboardLayout />
               </ProtectedRoute>
             }>
-              <Route path="dashboard" element={<DoctorDashboard />} />
+              {/* Doctor & Clinic Admin Routes */}
+              <Route element={
+                <ProtectedRoute allowedRoles={[UserRole.CLINIC_ADMIN, UserRole.DOCTOR]}>
+                  <Outlet />
+                </ProtectedRoute>
+              }>
+                <Route path="dashboard" element={<DoctorDashboard />} />
+                <Route path="patients" element={<Patients />} />
+                <Route path="appointments" element={<Appointments />} />
+                <Route path="chat" element={<Chat />} />
+              </Route>
 
-              {/* Shared Routes */}
-              <Route path="patients" element={
-                <ProtectedRoute allowedRoles={['Clinic Admin', 'Doctor']}>
-                  <Patients />
+              {/* Doctor Only Routes */}
+              <Route element={
+                <ProtectedRoute allowedRoles={[UserRole.DOCTOR]}>
+                  <Outlet />
                 </ProtectedRoute>
-              } />
-              <Route path="appointments" element={
-                <ProtectedRoute allowedRoles={['Clinic Admin', 'Doctor']}>
-                  <Appointments />
-                </ProtectedRoute>
-              } />
-              <Route path="chat" element={
-                <ProtectedRoute allowedRoles={['Clinic Admin', 'Doctor']}>
-                  <Chat />
-                </ProtectedRoute>
-              } />
-
-              {/* Doctor Specific Routes */}
-              <Route path="my-patients" element={
-                <ProtectedRoute allowedRoles={['Doctor']}>
-                  <Patients />
-                </ProtectedRoute>
-              } />
-              <Route path="my-appointments" element={
-                <ProtectedRoute allowedRoles={['Doctor']}>
-                  <Appointments />
-                </ProtectedRoute>
-              } />
-              <Route path="prescriptions" element={
-                <ProtectedRoute allowedRoles={['Doctor']}>
-                  <Prescriptions />
-                </ProtectedRoute>
-              } />
+              }>
+                <Route path="my-patients" element={<Patients />} />
+                <Route path="my-appointments" element={<Appointments />} />
+                <Route path="prescriptions" element={<Prescriptions />} />
+              </Route>
 
               {/* Pharmacy Routes */}
-              <Route path="pharmacy/products" element={
-                <ProtectedRoute allowedRoles={['Pharmacy']}>
-                  <Products />
+              <Route path="pharmacy" element={
+                <ProtectedRoute allowedRoles={[UserRole.PHARMACY]}>
+                  <Outlet />
                 </ProtectedRoute>
-              } />
-              <Route path="pharmacy/orders" element={
-                <ProtectedRoute allowedRoles={['Pharmacy']}>
-                  <Orders />
-                </ProtectedRoute>
-              } />
-              <Route path="pharmacy/inventory" element={
-                <ProtectedRoute allowedRoles={['Pharmacy']}>
-                  <Inventory />
-                </ProtectedRoute>
-              } />
-              <Route path="pharmacy/categories" element={
-                <ProtectedRoute allowedRoles={['Pharmacy']}>
-                  <Categories />
-                </ProtectedRoute>
-              } />
-              <Route path="pharmacy/customers" element={
-                <ProtectedRoute allowedRoles={['Pharmacy']}>
-                  <Customers />
-                </ProtectedRoute>
-              } />
-              <Route path="pharmacy/analytics" element={
-                <ProtectedRoute allowedRoles={['Pharmacy']}>
-                  <Analytics />
-                </ProtectedRoute>
-              } />
+              }>
+                <Route path="products" element={<Products />} />
+                <Route path="orders" element={<Orders />} />
+                <Route path="inventory" element={<Inventory />} />
+                <Route path="categories" element={<Categories />} />
+                <Route path="customers" element={<Customers />} />
+                <Route path="analytics" element={<Analytics />} />
+              </Route>
             </Route>
           </Routes>
         </Router>

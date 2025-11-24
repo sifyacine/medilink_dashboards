@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
-import { RouteGuard } from '../components/Common/RouteGuard';
+import { RouteGuard } from '../components/common/RouteGuard';
 import { SignIn } from '../pages/auth/SignIn';
 import { DoctorDashboard } from '../pages/Doctor/Dashboard';
 import { Patients } from '../pages/Doctor/Patients';

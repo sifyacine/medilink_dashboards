@@ -259,7 +259,7 @@ VITE_APP_NAME=Pharmacy Management System
 ```
 src/
 ├── components/
-│   ├── Common/          # Reusable components
+│   ├── common/          # Reusable components
 │   ├── Dashboard/       # Role-specific dashboards
 │   ├── Layout/          # Layout components
 │   └── Settings/        # Settings components

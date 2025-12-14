@@ -7,19 +7,21 @@ import { useState } from 'react';
 
 export const DashboardLayout: React.FC = () => {
   const [showSettings, setShowSettings] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const handleSearchChange = (query: string) => {
-    setSearchQuery(query);
     // You can implement global search logic here
     console.log('Global search:', query);
   };
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       <main className="flex-1 lg:ml-64 flex flex-col overflow-hidden">
-        <Header onSearchChange={handleSearchChange} onSettingsClick={() => setShowSettings(true)} />
+        <Header
+          onSearchChange={handleSearchChange}
+          onSettingsClick={() => setShowSettings(true)}
+          onMenuClick={() => setIsSidebarOpen(true)}
+        />
         <div className="flex-1 overflow-auto p-6">
           <Outlet />
         </div>

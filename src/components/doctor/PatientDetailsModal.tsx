@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '../common/Modal';
 import { Patient, MedicalRecord, Appointment } from '../../types/models';
-import { User, FileText, Calendar, Activity, Pill, Clock } from 'lucide-react';
+import { User, Calendar, Activity, Pill } from 'lucide-react';
 import { format } from 'date-fns';
 
 interface PatientDetailsModalProps {
@@ -25,7 +25,7 @@ const PatientDetailsModal: React.FC<PatientDetailsModalProps> = ({
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={`${patient.firstName} ${patient.lastName}`} size="4xl">
-            <div className="flex flex-col md:flex-row gap-6 h-[600px]">
+            <div className="flex flex-col md:flex-row gap-6 h-[70vh] md:h-[600px]">
                 {/* Sidebar Tabs */}
                 <div className="w-full md:w-64 flex-shrink-0 border-r border-gray-100 pr-4">
                     <div className="flex flex-col gap-2">
@@ -34,8 +34,8 @@ const PatientDetailsModal: React.FC<PatientDetailsModalProps> = ({
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id as any)}
                                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${activeTab === tab.id
-                                        ? 'bg-blue-50 text-blue-600 font-medium'
-                                        : 'text-gray-600 hover:bg-gray-50'
+                                    ? 'bg-blue-50 text-blue-600 font-medium'
+                                    : 'text-gray-600 hover:bg-gray-50'
                                     }`}
                             >
                                 <tab.icon size={18} />
@@ -159,8 +159,8 @@ const PatientDetailsModal: React.FC<PatientDetailsModalProps> = ({
                                         </div>
                                     </div>
                                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${apt.status === 'Confirmed' ? 'bg-green-100 text-green-700' :
-                                            apt.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' :
-                                                'bg-gray-100 text-gray-600'
+                                        apt.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' :
+                                            'bg-gray-100 text-gray-600'
                                         }`}>
                                         {apt.status}
                                     </span>

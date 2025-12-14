@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Search, Bell, Settings, Moon, Sun, User } from 'lucide-react';
+import { Search, Bell, Settings, Moon, Sun, Menu } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '../../contexts/ThemeContext';
 
 interface HeaderProps {
   onSearchChange: (query: string) => void;
   onSettingsClick: () => void;
+  onMenuClick: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onSearchChange, onSettingsClick }) => {
+export const Header: React.FC<HeaderProps> = ({ onSearchChange, onSettingsClick, onMenuClick }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const { user } = useAuth();
   const { isDarkMode, toggleDarkMode } = useTheme();
@@ -21,7 +22,14 @@ export const Header: React.FC<HeaderProps> = ({ onSearchChange, onSettingsClick 
 
   return (
     <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-4">
+        {/* Mobile Menu Button */}
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden p-2 -ml-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+        >
+          <Menu size={24} />
+        </button>
         {/* Search Bar */}
         <div className="flex-1 max-w-lg">
           <div className="relative">

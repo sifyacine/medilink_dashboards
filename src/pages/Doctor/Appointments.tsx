@@ -46,8 +46,8 @@ export const Appointments: React.FC = () => {
     const hours = Array.from({ length: 9 }, (_, i) => i + 9); // 09:00 to 17:00
 
     return (
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-        <div className="grid grid-cols-8 border-b border-gray-200">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden overflow-x-auto">
+        <div className="grid grid-cols-8 border-b border-gray-200 min-w-[800px]">
           <div className="p-4 border-r border-gray-200 bg-gray-50"></div>
           {days.map(day => (
             <div key={day.toISOString()} className={`p-4 text-center border-r border-gray-100 ${isSameDay(day, new Date()) ? 'bg-primary/10' : ''}`}>
@@ -56,9 +56,9 @@ export const Appointments: React.FC = () => {
             </div>
           ))}
         </div>
-        <div className="h-[600px] overflow-y-auto">
+        <div className="h-[600px] overflow-y-auto overflow-x-auto">
           {hours.map(hour => (
-            <div key={hour} className="grid grid-cols-8 min-h-[80px]">
+            <div key={hour} className="grid grid-cols-8 min-h-[80px] min-w-[800px]">
               <div className="p-2 border-r border-b border-gray-100 text-xs text-gray-400 text-right pr-4">
                 {hour}:00
               </div>

@@ -112,7 +112,7 @@ export const DoctorDashboard: React.FC = () => {
   };
 
   return (
-    <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
+    <div className="p-4 sm:p-6 space-y-8 bg-gray-50 min-h-screen">
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>

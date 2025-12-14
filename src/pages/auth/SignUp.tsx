@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserRole } from '../../types/auth'; // Ensure this path is correct
-import { Activity, CheckCircle, ChevronRight, User, Building, FileText, ArrowLeft, Loader } from 'lucide-react';
+import { CheckCircle, ChevronRight, User, Building, FileText, ArrowLeft, Loader } from 'lucide-react';
 
 const steps = [
     { id: 1, title: 'Role Selection', icon: User },
@@ -52,11 +52,12 @@ export const SignUp: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="flex justify-center items-center gap-2 mb-6">
-                    <div className="bg-primary p-2 rounded-lg">
-                        <Activity className="text-white w-6 h-6" />
-                    </div>
-                    <span className="text-2xl font-bold text-gray-900">MediLink</span>
+                <div className="flex justify-center mb-6">
+                    <img
+                        src="/assets/logo.png"
+                        alt="MediLink Logo"
+                        className="h-16 w-auto"
+                    />
                 </div>
                 <h2 className="text-center text-3xl font-extrabold text-gray-900">
                     Join Our Network

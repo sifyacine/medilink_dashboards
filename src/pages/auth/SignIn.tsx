@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate, Link } from 'react-router-dom';
-import { Lock, Mail, AlertCircle, ArrowRight, Activity } from 'lucide-react';
+import { Lock, Mail, AlertCircle, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 export const SignIn: React.FC = () => {
@@ -37,11 +37,12 @@ export const SignIn: React.FC = () => {
       <div className="flex-1 flex items-center justify-center p-8 sm:p-12 lg:p-16">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <div className="flex items-center gap-2 mb-6">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <Activity className="text-white w-6 h-6" />
-              </div>
-              <span className="text-2xl font-bold text-gray-900">MediLink</span>
+            <div className="mb-8">
+              <img
+                src="/assets/logo.png"
+                alt="MediLink Logo"
+                className="h-16 w-auto"
+              />
             </div>
             <h2 className="text-3xl font-bold text-gray-900 tracking-tight">
               Welcome back
@@ -135,7 +136,7 @@ export const SignIn: React.FC = () => {
 
             <div className="mt-6 text-center text-sm text-gray-600">
               Don't have an account?{' '}
-              <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500 flex items-center justify-center gap-1 mt-2">
+              <Link to="/register" className="font-medium text-primary hover:text-secondary flex items-center justify-center gap-1 mt-2">
                 Request Access <ArrowRight size={16} />
               </Link>
             </div>

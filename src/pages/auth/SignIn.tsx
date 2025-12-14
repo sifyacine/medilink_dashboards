@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { Lock, Mail, AlertCircle } from 'lucide-react';
+import { Navigate, Link } from 'react-router-dom';
+import { Lock, Mail, AlertCircle, ArrowRight, Activity } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 export const SignIn: React.FC = () => {
@@ -19,98 +19,158 @@ export const SignIn: React.FC = () => {
     setError('');
     setIsLoading(true);
 
-    const success = await login(email, password);
-
-    if (!success) {
-      setError('Invalid email or password');
+    try {
+      const success = await login(email, password);
+      if (!success) {
+        setError('Invalid email or password');
+      }
+    } catch (err) {
+      setError('An unexpected error occurred');
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-cyan-900 flex items-center justify-center p-4">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <div className="flex justify-center">
-            <img
-              src="/assets/logo.png"
-              alt="Medilink Logo"
-              className="w-24 h-24 rounded-2xl shadow-lg"
-            />
+    <div className="min-h-screen bg-white flex">
+      {/* Left Side - Form */}
+      <div className="flex-1 flex items-center justify-center p-8 sm:p-12 lg:p-16">
+        <div className="w-full max-w-md space-y-8">
+          <div>
+            <div className="flex items-center gap-2 mb-6">
+              <div className="bg-blue-600 p-2 rounded-lg">
+                <Activity className="text-white w-6 h-6" />
+              </div>
+              <span className="text-2xl font-bold text-gray-900">MediLink</span>
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">
+              Welcome back
+            </h2>
+            <p className="mt-2 text-gray-600">
+              Please enter your details to sign in.
+            </p>
           </div>
-          <h2 className="mt-6 text-3xl font-bold text-white">
-            Welcome to Medilink
-          </h2>
-          <p className="mt-2 text-slate-300">
-            Sign in to your account to continue
-          </p>
-        </div>
 
-        <div className="bg-white rounded-xl shadow-2xl p-8">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             {error && (
               <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center space-x-3">
-                <AlertCircle size={20} className="text-red-500" />
-                <span className="text-red-700">{error}</span>
+                <AlertCircle size={20} className="text-red-500 flex-shrink-0" />
+                <span className="text-red-700 text-sm">{error}</span>
               </div>
             )}
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
-              <div className="relative">
-                <Mail size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <input
-                  id="email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
-                  placeholder="Enter your email"
-                />
+            <div className="space-y-5">
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Mail className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    placeholder="name@company.com"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                  Password
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Lock className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    placeholder="••••••••"
+                  />
+                </div>
               </div>
             </div>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <Lock size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
                 <input
-                  id="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors"
-                  placeholder="Enter your password"
+                  id="remember-me"
+                  name="remember-me"
+                  type="checkbox"
+                  className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
                 />
+                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                  Remember me
+                </label>
+              </div>
+
+              <div className="text-sm">
+                <a href="#" className="font-medium text-primary hover:text-secondary">
+                  Forgot password?
+                </a>
               </div>
             </div>
 
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-cyan-600 text-white py-3 px-4 rounded-lg hover:bg-cyan-700 focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {isLoading ? 'Signing in...' : 'Sign in'}
             </button>
-          </form>
 
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <div className="text-sm text-gray-600">
-              <p className="font-medium mb-2">Demo Credentials:</p>
-              <div className="space-y-1">
-                <p><span className="font-medium">Super User:</span> superuser@clinic.com / super123</p>
-                <p><span className="font-medium">Clinic Admin:</span> clinicadmin@clinic.com / clinic123</p>
-                <p><span className="font-medium">Doctor:</span> doctor@clinic.com / doctor123</p>
-                <p><span className="font-medium">Nurse:</span> nurse@clinic.com / nurse123</p>
-                <p><span className="font-medium">Pharmacy:</span> pharmacy@clinic.com / pharmacy123</p>
-              </div>
+            <div className="mt-6 text-center text-sm text-gray-600">
+              Don't have an account?{' '}
+              <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500 flex items-center justify-center gap-1 mt-2">
+                Request Access <ArrowRight size={16} />
+              </Link>
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-gray-100 text-center">
+              <Link to="/status" className="text-sm text-gray-500 hover:text-gray-700">
+                Check Application Status
+              </Link>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      {/* Right Side - Image/Brand */}
+      <div className="hidden lg:block relative w-0 flex-1 bg-primary">
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-primary to-secondary opacity-90"></div>
+        <img
+          className="absolute inset-0 h-full w-full object-cover mix-blend-overlay"
+          src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+          alt="Medical Team"
+        />
+        <div className="absolute inset-0 flex flex-col justify-center px-12 text-white z-10">
+          <h2 className="text-4xl font-bold mb-6">Modern Healthcare Management</h2>
+          <p className="text-lg text-blue-100 max-w-lg leading-relaxed">
+            Streamline your clinic's operations, manage patient records securely, and enhance care delivery with our comprehensive dashboard.
+          </p>
+          <div className="mt-8 flex gap-4">
+            <div className="flex -space-x-2">
+              {[1, 2, 3, 4].map(i => (
+                <div key={i} className="w-10 h-10 rounded-full border-2 border-blue-600 bg-gray-200" />
+              ))}
+            </div>
+            <div className="flex flex-col justify-center">
+              <span className="font-bold">2,000+</span>
+              <span className="text-xs text-blue-200">Medical Professionals</span>
             </div>
           </div>
         </div>

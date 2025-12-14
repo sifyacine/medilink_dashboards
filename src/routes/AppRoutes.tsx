@@ -4,6 +4,8 @@ import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { RouteGuard } from '../components/common/RouteGuard';
 import { SignIn } from '../pages/auth/SignIn';
+import { SignUp } from '../pages/auth/SignUp';
+import { RegistrationStatus } from '../pages/auth/RegistrationStatus';
 import { DoctorDashboard } from '../pages/Doctor/Dashboard';
 import { Patients } from '../pages/Doctor/Patients';
 import { Appointments } from '../pages/Doctor/Appointments';
@@ -25,6 +27,8 @@ function AppRoutes() {
         <Router>
           <Routes>
             <Route path="/login" element={<SignIn />} />
+            <Route path="/register" element={<SignUp />} />
+            <Route path="/status" element={<RegistrationStatus />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
             {/* Main Layout Routes */}

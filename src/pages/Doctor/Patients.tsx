@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Search, Filter, Plus } from 'lucide-react';
+import { Search, Filter, Plus, LayoutGrid, List } from 'lucide-react';
 import PatientCard from '../../components/doctor/PatientCard';
+import { PatientsTable } from '../../components/doctor/PatientsTable';
 import PatientDetailsModal from '../../components/doctor/PatientDetailsModal';
+import { AddPatientModal } from '../../components/doctor/AddPatientModal';
 import { doctorService } from '../../services/doctorService';
 import { Patient, MedicalRecord, Appointment } from '../../types/models';
 
 export const Patients: React.FC = () => {
   const [patients, setPatients] = useState<Patient[]>([]);
   const [loading, setLoading] = useState(true);
+  const [viewMode, setViewMode] = useState<'grid' | 'table'>('table');
+  const [showAddModal, setShowAddModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPatientId, setSelectedPatientId] = useState<string | null>(null);
   const [detailsData, setDetailsData] = useState<{
@@ -61,7 +65,10 @@ export const Patients: React.FC = () => {
           <h1 className="text-2xl font-bold text-gray-900">Patients</h1>
           <p className="text-gray-500">Manage patient records</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary font-medium shadow-sm transition-colors">
+        <button
+          onClick={() => setShowAddModal(true)}
+          className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary font-medium shadow-sm transition-colors"
+        >
           <Plus size={18} /> Add Patient
         </button>
       </div>
@@ -77,19 +84,37 @@ export const Patients: React.FC = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-gray-50 text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-100 font-medium transition-colors">
-          <Filter size={18} /> Filters
-        </button>
+        <div className="flex items-center gap-2">
+          <button className="flex items-center gap-2 px-4 py-2 bg-gray-50 text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-100 font-medium transition-colors">
+            <Filter size={18} /> Filters
+          </button>
+          <div className="flex bg-gray-100 p-1 rounded-lg border border-gray-200">
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`p-2 rounded-md transition-all ${viewMode === 'grid' ? 'bg-white shadow text-cyan-600' : 'text-gray-400 hover:text-gray-600'}`}
+            >
+              <LayoutGrid size={20} />
+            </button>
+            <button
+              onClick={() => setViewMode('table')}
+              className={`p-2 rounded-md transition-all ${viewMode === 'table' ? 'bg-white shadow text-cyan-600' : 'text-gray-400 hover:text-gray-600'}`}
+            >
+              <List size={20} />
+            </button>
+          </div>
+        </div>
       </div>
 
       {loading ? (
         <div className="p-10 text-center text-gray-500">Loading patients...</div>
-      ) : (
+      ) : viewMode === 'grid' ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredPatients.map(patient => (
             <PatientCard key={patient.id} patient={patient} onClick={handlePatientClick} />
           ))}
         </div>
+      ) : (
+        <PatientsTable patients={filteredPatients} onView={handlePatientClick} />
       )}
 
       {detailsData && (
@@ -101,6 +126,17 @@ export const Patients: React.FC = () => {
           appointments={detailsData.appointments}
         />
       )}
+
+      <AddPatientModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onSave={(newPatient) => {
+          console.log('New Patient:', newPatient);
+          // In reality: await doctorService.createPatient(newPatient);
+          // setPatients([...patients, createdPatient]);
+          setShowAddModal(false);
+        }}
+      />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, Search, MoreVertical, Phone, Video, UserPlus, MessageCircle } from 'lucide-react';
+import { Send, Search, MoreVertical, Phone, Video, UserPlus, MessageCircle, ArrowLeft } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -22,6 +22,7 @@ interface Contact {
 
 export const Chat: React.FC = () => {
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
+  const [showChatMobile, setShowChatMobile] = useState(false);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -157,12 +158,13 @@ export const Chat: React.FC = () => {
     } else {
       setMessages([]);
     }
+    setShowChatMobile(true);
   };
 
   return (
-    <div className="h-[calc(100vh-8rem)] bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 flex">
+    <div className="h-[calc(100vh-8rem)] bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 flex overflow-hidden">
       {/* Contacts Sidebar */}
-      <div className="w-1/3 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+      <div className={`${showChatMobile ? 'hidden' : 'flex'} w-full lg:w-1/3 border-r border-gray-200 dark:border-gray-700 flex-col`}>
         {/* Header */}
         <div className="p-4 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between mb-4">
@@ -223,13 +225,19 @@ export const Chat: React.FC = () => {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 flex flex-col">
+      <div className={`${!showChatMobile ? 'hidden' : 'flex'} lg:flex flex-1 flex-col`}>
         {selectedContact ? (
           <>
             {/* Chat Header */}
             <div className="p-4 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
+                  <button
+                    onClick={() => setShowChatMobile(false)}
+                    className="lg:hidden p-2 -ml-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
+                  >
+                    <ArrowLeft size={20} className="text-gray-600 dark:text-gray-400" />
+                  </button>
                   <div className="relative">
                     <div className="w-10 h-10 bg-cyan-500 rounded-full flex items-center justify-center">
                       <span className="text-white font-medium text-sm">{selectedContact.avatar}</span>
@@ -266,8 +274,8 @@ export const Chat: React.FC = () => {
                 >
                   <div
                     className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${msg.isOwn
-                        ? 'bg-cyan-600 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
+                      ? 'bg-cyan-600 text-white'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
                       }`}
                   >
                     <p className="text-sm">{msg.content}</p>
@@ -309,10 +317,16 @@ export const Chat: React.FC = () => {
             </form>
           </>
         ) : (
-          <div className="flex-1 flex items-center justify-center">
-            <div className="text-center">
+          <div className="flex-1 flex items-center justify-center bg-gray-50 dark:bg-gray-900/50">
+            <div className="text-center p-6">
               <MessageCircle size={48} className="text-gray-400 dark:text-gray-500 mx-auto mb-4" />
               <p className="text-gray-600 dark:text-gray-400">Select a contact to start chatting</p>
+              <button
+                onClick={() => setShowChatMobile(false)}
+                className="mt-4 lg:hidden px-4 py-2 bg-cyan-600 text-white rounded-lg"
+              >
+                Back to Contacts
+              </button>
             </div>
           </div>
         )}

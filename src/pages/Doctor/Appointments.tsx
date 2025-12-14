@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Calendar as CalendarIcon, List, Clock, Filter, Plus } from 'lucide-react';
+import { Calendar as CalendarIcon, List, Clock, Filter, Plus, LayoutGrid } from 'lucide-react';
 import AppointmentTable from '../../components/doctor/AppointmentTable';
+import { AppointmentCard } from '../../components/doctor/AppointmentCard';
 import { doctorService } from '../../services/doctorService';
 import { Appointment } from '../../types/models';
 import { format, startOfWeek, addDays, isSameDay } from 'date-fns';
 
 export const Appointments: React.FC = () => {
-  const [view, setView] = useState<'list' | 'calendar'>('list');
+  const [view, setView] = useState<'list' | 'grid' | 'calendar'>('list');
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState<string>('All');
@@ -104,6 +105,12 @@ export const Appointments: React.FC = () => {
               <List size={20} />
             </button>
             <button
+              onClick={() => setView('grid')}
+              className={`p-2 rounded-md transition-colors ${view === 'grid' ? 'bg-primary/10 text-primary' : 'text-gray-400 hover:text-gray-600'}`}
+            >
+              <LayoutGrid size={20} />
+            </button>
+            <button
               onClick={() => setView('calendar')}
               className={`p-2 rounded-md transition-colors ${view === 'calendar' ? 'bg-primary/10 text-primary' : 'text-gray-400 hover:text-gray-600'}`}
             >
@@ -142,6 +149,40 @@ export const Appointments: React.FC = () => {
             appointments={filteredAppointments}
             onStatusChange={handleStatusChange}
           />
+        </div>
+      )}
+
+      {view === 'grid' && (
+        <div className="space-y-6">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 text-gray-500">
+              <Filter size={18} />
+              <span className="text-sm font-medium">Filter by Status:</span>
+            </div>
+            <div className="flex gap-2">
+              {['All', 'Pending', 'Confirmed', 'Completed', 'Cancelled'].map(status => (
+                <button
+                  key={status}
+                  onClick={() => setFilterStatus(status)}
+                  className={`px-3 py-1 text-sm rounded-full border transition-colors ${filterStatus === status
+                    ? 'bg-primary/10 text-primary border-primary/20'
+                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                    }`}
+                >
+                  {status}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredAppointments.map(appointment => (
+              <AppointmentCard
+                key={appointment.id}
+                appointment={appointment}
+                onStatusChange={handleStatusChange}
+              />
+            ))}
+          </div>
         </div>
       )}
 

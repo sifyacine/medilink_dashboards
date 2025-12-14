@@ -55,6 +55,7 @@ const PatientDetailsModal: React.FC<PatientDetailsModalProps> = ({
                         <div className="text-sm space-y-2 text-gray-600">
                             <p><span className="font-medium text-gray-900">Phone:</span> {patient.phone}</p>
                             <p><span className="font-medium text-gray-900">Blood:</span> {patient.bloodType || 'N/A'}</p>
+                            <p><span className="font-medium text-gray-900">Height:</span> {patient.height ? `${patient.height} cm` : 'N/A'} • <span className="font-medium text-gray-900">Weight:</span> {patient.weight ? `${patient.weight} kg` : 'N/A'}</p>
                         </div>
                     </div>
                 </div>

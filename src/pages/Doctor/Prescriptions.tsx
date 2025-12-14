@@ -301,8 +301,8 @@ export const Prescriptions: React.FC = () => {
                 )}
 
                 {/* Add new medication form */}
-                <div className="grid grid-cols-2 gap-4 p-4 border border-gray-300 dark:border-gray-600 rounded-lg">
-                  <div className="col-span-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border border-gray-300 dark:border-gray-600 rounded-lg">
+                  <div className="col-span-1 md:col-span-2">
                     <input
                       type="text"
                       value={currentMed.name}
@@ -346,7 +346,7 @@ export const Prescriptions: React.FC = () => {
                     placeholder="Durée (ex: 7 jours) *"
                     className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                   />
-                  <div className="col-span-2 flex items-center justify-between">
+                  <div className="col-span-1 md:col-span-2 flex items-center justify-between">
                     <label className="flex items-center space-x-2">
                       <input
                         type="checkbox"

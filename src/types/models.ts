@@ -97,3 +97,25 @@ export interface CabinetStats {
   revenueToday: number;
   pendingAppointments: number;
 }
+
+export interface ClinicStats {
+  totalDoctors: number;
+  totalNurses: number;
+  appointmentsToday: number;
+  monthlyRevenue: number;
+  totalPatients: number;
+}
+
+export interface ClinicTask {
+  id: number;
+  task: string;
+  priority: 'High' | 'Medium' | 'Low';
+  due: string;
+}
+
+export interface ActivityLog {
+  id: number;
+  action: string;
+  detail: string;
+  time: string;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navigate, Link } from 'react-router-dom';
 import { Lock, Mail, AlertCircle, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { UserRole } from '../../types/auth';
 
 export const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +12,12 @@ export const SignIn: React.FC = () => {
   const { user, login } = useAuth();
 
   if (user) {
+    if (user.role === UserRole.CLINIC_ADMIN) {
+      return <Navigate to="/clinic-dashboard" replace />;
+    }
+    if (user.role === UserRole.PHARMACY) {
+      return <Navigate to="/pharmacy/products" replace />;
+    }
     return <Navigate to="/dashboard" replace />;
   }
 

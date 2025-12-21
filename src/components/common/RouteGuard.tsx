@@ -29,6 +29,9 @@ export const RouteGuard: React.FC<ProtectedRouteProps> = ({ children, allowedRol
         if (user.role === UserRole.PHARMACY) {
             return <Navigate to="/pharmacy/products" replace />;
         }
+        if (user.role === UserRole.CLINIC_ADMIN) {
+            return <Navigate to="/clinic-dashboard" replace />;
+        }
         return <Navigate to="/dashboard" replace />;
     }
 

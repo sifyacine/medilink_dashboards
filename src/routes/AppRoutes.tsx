@@ -1,6 +1,5 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { AuthProvider } from '../contexts/AuthContext';
+import { AuthProvider, useAuth } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { RouteGuard } from '../components/common/RouteGuard';
 import { SignIn } from '../pages/auth/SignIn';
@@ -16,9 +15,37 @@ import { Orders } from '../pages/seller/Orders';
 import { Inventory } from '../pages/seller/Inventory';
 import { Categories } from '../pages/seller/Categories';
 import { Customers } from '../pages/seller/Customers';
+import { ClinicAdminDashboard } from '../pages/Clinic/ClinicAdminDashboard';
+import { ClinicDoctors } from '../pages/Clinic/Doctors';
+import { ClinicPatients } from '../pages/Clinic/Patients';
+import { ClinicAppointments } from '../pages/Clinic/Appointments';
+import { ClinicMedicines } from '../pages/Clinic/Medicines';
+import { ClinicSettings } from '../pages/Clinic/Settings';
+import { ClinicServices } from '../pages/Clinic/Services';
+import { ClinicBilling } from '../pages/Clinic/Billing';
 import { Analytics } from '../pages/seller/Analytics';
 import { DashboardLayout } from '../layouts/DashboardLayout';
 import { UserRole } from '../types/auth';
+
+function RootRedirect() {
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) return null;
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (user.role === UserRole.CLINIC_ADMIN) {
+    return <Navigate to="/clinic-dashboard" replace />;
+  }
+
+  if (user.role === UserRole.PHARMACY) {
+    return <Navigate to="/pharmacy/products" replace />;
+  }
+
+  return <Navigate to="/dashboard" replace />;
+}
 
 function AppRoutes() {
   return (
@@ -29,7 +56,7 @@ function AppRoutes() {
             <Route path="/login" element={<SignIn />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/status" element={<RegistrationStatus />} />
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/" element={<RootRedirect />} />
 
             {/* Main Layout Routes */}
             <Route path="/*" element={
@@ -37,9 +64,24 @@ function AppRoutes() {
                 <DashboardLayout />
               </RouteGuard>
             }>
-              {/* Doctor & Clinic Admin Routes */}
+              {/* Doctor & Clinic Admin Routes - Separated */}
               <Route element={
-                <RouteGuard allowedRoles={[UserRole.CLINIC_ADMIN, UserRole.DOCTOR]}>
+                <RouteGuard allowedRoles={[UserRole.CLINIC_ADMIN]}>
+                  <Outlet />
+                </RouteGuard>
+              }>
+                <Route path="clinic-dashboard" element={<ClinicAdminDashboard />} />
+                <Route path="clinic/doctors" element={<ClinicDoctors />} />
+                <Route path="clinic/patients" element={<ClinicPatients />} />
+                <Route path="clinic/appointments" element={<ClinicAppointments />} />
+                <Route path="clinic/medicines" element={<ClinicMedicines />} />
+                <Route path="clinic/settings" element={<ClinicSettings />} />
+                <Route path="clinic/services" element={<ClinicServices />} />
+                <Route path="clinic/billing" element={<ClinicBilling />} />
+              </Route>
+
+              <Route element={
+                <RouteGuard allowedRoles={[UserRole.DOCTOR]}>
                   <Outlet />
                 </RouteGuard>
               }>

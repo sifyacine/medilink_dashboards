@@ -38,15 +38,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         switch (role) {
             case 'Clinic Admin':
                 return [
-                    { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-                    { name: 'Doctors', icon: Stethoscope, path: '/doctors' },
-                    { name: 'Patients', icon: Users, path: '/patients' },
-                    { name: 'Appointments', icon: Calendar, path: '/appointments' },
-                    { name: 'Medicines', icon: Pill, path: '/medicines' },
-                    { name: 'Storage', icon: Box, path: '/products' },
-                    { name: 'Coupons', icon: Ticket, path: '/coupons' },
-                    { name: 'Chat', icon: MessageSquare, path: '/chat' },
-                    { name: 'FAQs', icon: HelpCircle, path: '/faqs' },
+                    { name: 'Dashboard', icon: LayoutDashboard, path: '/clinic-dashboard' },
+                    { name: 'Doctors', icon: Stethoscope, path: '/clinic/doctors' },
+                    { name: 'Patients', icon: Users, path: '/clinic/patients' },
+                    { name: 'Appointments', icon: Calendar, path: '/clinic/appointments' },
+                    { name: 'Medicines', icon: Pill, path: '/clinic/medicines' },
+                    { name: 'Services', icon: FileText, path: '/clinic/services' },
+                    { name: 'Billing', icon: BarChart2, path: '/clinic/billing' },
+                    { name: 'Settings', icon: HelpCircle, path: '/clinic/settings' },
                 ];
             case 'Doctor':
                 return [
